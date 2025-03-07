@@ -1,0 +1,66 @@
+button:hover {
+    background-color: rgb(170, 134, 204);
+}
+
+h1 {
+    text-align: center;
+    animation: textColor 5s infinite;
+    margin-top: 10px; 
+}
+
+@keyframes textColor {
+    0% { color: aliceblue; }
+    1% { color: rgb(29, 80, 124); }
+    2% { color: rgb(10, 15, 19); }
+    3% { color: rgb(79, 89, 97); }
+    4% { color: rgb(0, 47, 88); }
+    5% { color: rgb(23, 61, 95); }
+    6% { color: rgb(16, 42, 65); }
+    7% { color: rgb(15, 136, 241); }
+    8% { color: rgb(36, 42, 48); }
+    9% { color: rgb(26, 6, 114); }
+    10% { color: rgb(192, 2, 240); }
+    11% { color: aliceblue; }
+    12% { color: aliceblue; }
+    13% { color: aliceblue; }
+    100% { color: rgb(170, 134, 204); }
+}
+@keyframes animateBorder {  
+    0%, 100% {  
+        border-color: rgb(83, 86, 233);  
+    }  
+    50% {  
+        border-color: rgb(118, 230, 54); /* Change to your desired color */  
+    }  
+  }  
+  
+#container {
+    position: relative;
+    z-index: 1;
+    border-color: blue;
+    animation: animateBorder 5s infinite;
+    align-self: start;
+    align-items: flex-start;
+}
+.scrollable {
+    overflow-y: auto;          
+    max-height: calc(100vh - 250px); 
+    -webkit-overflow-scrolling: touch; 
+    touch-action: pan-y;        
+    height: 100%;              
+    box-sizing: border-box;    
+}
+.stars {
+    pointer-events: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-start; 
+}
+
+@media (max-width: 750px) {
+    .stars, .star {
+        pointer-events: none; 
+    }
+}
