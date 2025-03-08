@@ -1,7 +1,10 @@
 button:hover {
-    background-color: rgb(170, 134, 204);
+    background-color: rgb(98, 112, 189);
+    scale: 1.1;
 }
-
+button{
+    background-color: lightskyblue;
+}
 h1 {
     text-align: center;
     animation: textColor 5s infinite;
@@ -20,19 +23,11 @@ h1 {
     8% { color: rgb(36, 42, 48); }
     9% { color: rgb(26, 6, 114); }
     10% { color: rgb(192, 2, 240); }
-    11% { color: aliceblue; }
-    12% { color: aliceblue; }
-    13% { color: aliceblue; }
-    100% { color: rgb(170, 134, 204); }
+    11% { color: rgb(95, 114, 131); }
+    12% { color: rgb(122, 223, 28); }
+    13% { color: rgb(168, 29, 29); }
+    100% { color: lightskyblue; }
 }
-@keyframes animateBorder {  
-    0%, 100% {  
-        border-color: rgb(83, 86, 233);  
-    }  
-    50% {  
-        border-color: rgb(118, 230, 54); /* Change to your desired color */  
-    }  
-  }  
   
 #container {
     position: relative;
