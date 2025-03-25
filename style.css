@@ -54,8 +54,96 @@ h1 {
     justify-content: flex-start; 
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #000;
+    padding: 10px 0;
+}
+
 @media (max-width: 750px) {
     .stars, .star {
         pointer-events: none; 
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.name {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-bottom: 25px;
+}
+
+h2 {
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.experience-item, .education-item {
+    margin-bottom: 20px;
+}
+
+.date {
+    color: #7f8c8d;
+    font-size: 0.9em;
+}
+
+.skills {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.skill-tag {
+    background-color: #1f3035;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .contact-info, .skills {
+        grid-template-columns: 1fr;
     }
 }
