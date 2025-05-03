@@ -6,7 +6,7 @@ COPY superstyle.css /usr/share/nginx/html/superstyle.css
 COPY superstyle.css.map /usr/share/nginx/html/superstyle.css.map
 COPY script.js /usr/share/nginx/html/script.js
 COPY superstyle.scss /usr/share/nginx/html/superstyle.scss
-
+COPY lichhoc.html /usr/share/nginx/html/lichhoc.html
 
 EXPOSE 80
 
