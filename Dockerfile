@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
 COPY mainPage.html /usr/share/nginx/html/index.html
-COPY style.css /usr/share/nginx/html/style.css
+COPY mainPageStyle.css /usr/share/nginx/html/mainPageStyle.css
 COPY superstyle.css /usr/share/nginx/html/superstyle.css
 COPY superstyle.css.map /usr/share/nginx/html/superstyle.css.map
 COPY script.js /usr/share/nginx/html/script.js

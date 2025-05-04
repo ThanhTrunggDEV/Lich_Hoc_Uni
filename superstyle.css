@@ -1,10 +1,7 @@
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
-  overflow: hidden;
+  
+  /* overflow: hidden; */
 }
 
 .stars {
@@ -13,9 +10,12 @@ body {
   left: 0;
   width: 50%;
   height: 90%;
+  pointer-events: none;
   transform: rotate(-45deg);
   filter: brightness(5) contrast(1) sepia(10) grayscale(35);
 }
+
+
 
 .star {
   --star-color: var(--primary-color);

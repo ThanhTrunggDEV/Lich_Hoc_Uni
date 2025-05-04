@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thời Khóa Biểu</title>
+  <link rel="stylesheet" href="superstyle.css">
   <style>
     :root {
       --primary-color: #6200ee;
@@ -21,6 +22,24 @@
       --transition: all 0.3s ease;
     }
     
+    .dark-mode {
+  --primary-color: #44365c;
+  --primary-dark: #363042;
+  --primary-light: #BB86FC;
+  --secondary-color: #03DAC6;
+  --surface-color: #1E1E1E;
+  --background-color: #121212;
+  --error-color: #CF6679;
+  --text-primary: rgb(4, 181, 240);
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-on-primary: #000000;
+  --border-radius: 16px;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --transition: all 0.3s ease;
+  --border: rgba(255, 255, 255, 0.12);
+  --checkbox-color: #03DAC6;
+  --accent-surface: rgba(74, 144, 226, 0.15);
+}
     * {
       margin: 0;
       padding: 0;
@@ -37,6 +56,7 @@
       line-height: 1.6;
     }
     
+
     .app-container {
       max-width: 800px;
       margin: 0 auto;
@@ -47,6 +67,8 @@
       overflow: hidden;
     }
     
+    
+
     .header {
       background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
       color: var(--text-on-primary);
@@ -233,7 +255,7 @@
       font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 12px;
-      color: var(--primary-dark);
+      color: var(--primary-light);
     }
     
     .class-info {
@@ -334,7 +356,7 @@
       <h1>Lịch Học Cá Nhân</h1>
       <div class="header-subtitle">Quản lý thời gian học tập hiệu quả</div>
       <div class="header-actions">
-        <div class="header-icon"><i class="fas fa-cog"></i></div>
+        <div class="header-icon" id="change-mode-button"><i class="fas fa-sun"></i></div>
         <div class="header-icon" id="refresh-button"><i class="fas fa-sync-alt"></i></div>
       </div>
     </div>
@@ -348,6 +370,8 @@
       </div>
     </div>
   </div>
+ 
+   
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -740,7 +764,35 @@
         console.error("Error during initialization:", initError);
         showError("Lỗi khởi tạo ứng dụng", initError.message);
       }
+      
+      const changeModeButton = document.getElementById('change-mode-button');
+      let isDarkMode = false;
+      changeModeButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        if(isDarkMode === false){
+          isDarkMode = true;
+          changeModeButton.innerHTML = '<i class="fas fa-moon">';
+        const newDiv = document.createElement('div');
+        newDiv.className = 'stars';
+        for(let i = 0; i < 30; i++){
+          const tempDiv = document.createElement('div');
+          tempDiv.className = 'star';
+          newDiv.appendChild(tempDiv);
+        }
+        document.body.appendChild(newDiv);
+      }
+      else{
+        isDarkMode = false;
+        changeModeButton.innerHTML = '<i class="fas fa-sun">';
+        const starDiv = document.querySelectorAll('.stars');
+        starDiv.forEach(element => {
+          element.remove();
+        });
+      }
+      });
+
     });
   </script>
+
 </body>
 </html>
