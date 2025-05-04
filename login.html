@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng Nhập | Lịch Học Sinh Viên</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --primary-dark: #3a0ca3;
+      --primary-light: #7209b7;
+      --secondary-color: #4cc9f0;
+      --surface-color: #ffffff;
+      --background-color: #f8f9fa;
+      --error-color: #e63946;
+      --text-primary: #212529;
+      --text-secondary: #6c757d;
+      --text-on-primary: #ffffff;
+      --border-radius: 12px;
+      --shadow: 0 8px 30px rgba(0,0,0,0.12);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: var(--text-primary);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      background-color: var(--surface-color);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .login-header {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: var(--text-on-primary);
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .login-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+    }
+    
+    .login-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    .login-header p {
+      font-size: 1rem;
+      opacity: 0.9;
+      position: relative;
+    }
+    
+    .login-logo {
+      width: 80px;
+      height: 80px;
+      background-color: var(--surface-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    
+    .login-logo i {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+    }
+    
+    .login-form {
+      padding: 30px;
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+    
+    .input-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      color: var(--text-secondary);
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 15px 15px 15px 45px;
+      border: 1px solid #ced4da;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+    
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: var(--text-on-primary);
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+    }
+    
+    .btn::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+      transform: translateX(-100%);
+    }
+    
+    .btn:hover::after {
+      transform: translateX(100%);
+      transition: transform 0.6s ease;
+    }
+    
+    .additional-options {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+    
+    .remember-me {
+      display: flex;
+      align-items: center;
+    }
+    
+    .remember-me input {
+      margin-right: 8px;
+    }
+    
+    .forgot-password {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .forgot-password:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+    
+    .login-footer {
+      text-align: center;
+      padding: 0 30px 30px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+    
+    .error-message {
+      background-color: #fff5f5;
+      border-left: 4px solid var(--error-color);
+      color: var(--error-color);
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      display: none;
+    }
+    
+    .error-message i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+    
+    @media (max-width: 480px) {
+      .login-container {
+        max-width: 100%;
+      }
+      
+      .additional-options {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .btn {
+        padding: 12px;
+      }
+      
+      .login-header h1 {
+        font-size: 1.7rem;
+      }
+    }
+    
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .login-container {
+      animation: fadeIn 0.6s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <div class="login-logo">
+        <i class="fas fa-calendar-alt"></i>
+      </div>
+      <h1>Lịch Học Cá Nhân</h1>
+      <p>Vui lòng đăng nhập để xem lịch học</p>
+    </div>
+    
+    <div class="login-form">
+      <div id="error-message" class="error-message">
+        <i class="fas fa-exclamation-circle"></i>
+        <span>Thông tin đăng nhập không chính xác!</span>
+      </div>
+      
+      <form id="login-form">
+        <div class="form-group">
+          <label for="studentId">Mã Sinh Viên</label>
+          <div class="input-group">
+            <i class="fas fa-user input-icon"></i>
+            <input type="text" id="studentId" class="form-control" placeholder="Nhập mã sinh viên" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Mật Khẩu</label>
+          <div class="input-group">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="password" class="form-control" placeholder="Nhập mật khẩu" required>
+            <i class="far fa-eye password-toggle" id="password-toggle"></i>
+          </div>
+        </div>
+        <!--
+        <div class="additional-options">
+          <div class="remember-me">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Ghi nhớ đăng nhập</label>
+          </div>
+          <a href="#" class="forgot-password">Quên mật khẩu?</a>
+        </div>
+        -->
+        <button type="submit" class="btn" id="login-button">
+          <i class="fas fa-sign-in-alt"></i> Đăng Nhập
+        </button>
+      </form>
+    </div>
+    
+    <div class="login-footer">
+      <p>© 2025 Hệ Thống Xem Lịch Học Sinh Viên ITCU</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('login-form');
+      const passwordToggle = document.getElementById('password-toggle');
+      const passwordInput = document.getElementById('password');
+      const errorMessage = document.getElementById('error-message');
+      
+      
+      passwordToggle.addEventListener('click', function() {
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          passwordToggle.classList.remove('fa-eye');
+          passwordToggle.classList.add('fa-eye-slash');
+        } else {
+          passwordInput.type = 'password';
+          passwordToggle.classList.remove('fa-eye-slash');
+          passwordToggle.classList.add('fa-eye');
+        }
+      });
+      
+      
+      loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const studentId = document.getElementById('studentId').value;
+        const password = document.getElementById('password').value;
+        
+        
+        if (!studentId || !password) {
+          errorMessage.style.display = 'flex';
+          errorMessage.querySelector('span').textContent = 'Vui lòng nhập đầy đủ thông tin!';
+          return;
+        }
+        
+        
+        const loginButton = document.getElementById('login-button');
+        loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+        loginButton.disabled = true;
+        
+        localStorage.setItem('studentID', studentId);
+        localStorage.setItem('password', password);
+        setTimeout(async function() {
+            const response = await fetch(`http://nguyenthanhtrung.online:8001/login?username=${studentId}&password=${password}`, {
+              method: 'GET',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }
+            });
+            if(response.status == 200){
+                window.location.href = 'lichhoc.html';
+            }
+            else{
+                alert("Đăng nhập thất bại vui lòng kiểm tra lại")
+                loginButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Đăng Nhập';
+                loginButton.disabled = false;
+            }
+          
+        }, 1500);
+      });
+      
+      
+      document.getElementById('studentId').focus();
+    });
+  </script>
+</body>
+</html>

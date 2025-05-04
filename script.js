@@ -2,7 +2,6 @@
 document.getElementById('sendButton').addEventListener('click', function(){
     const message = document.getElementById('messageBox').value;
     const chat_id = "-4692727901";
-    const bot_token = "7675892682:AAEomDtFtdrUWDpIXyNt6HWHeRawikfCCpk";
 
     if(!message) {
         alert("Vui Lòng Nhập Lại");

@@ -583,7 +583,10 @@
         
         try {
             let data;
-            const response = await fetch("http://nguyenthanhtrung.online:8001/download", {
+            const studentID = localStorage.getItem('studentID');
+            const password = localStorage.getItem('password');
+            
+            const response = await fetch(`http://nguyenthanhtrung.online:8001/download?username=${studentID}&password=${password}`, {
               method: 'GET',
               headers: {
                 'Accept': 'application/json',
