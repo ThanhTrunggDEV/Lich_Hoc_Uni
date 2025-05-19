@@ -368,7 +368,7 @@
         localStorage.setItem('studentID', studentId);
         localStorage.setItem('password', password);
         setTimeout(async function() {
-            const response = await fetch(`http://nguyenthanhtrung.online:8001/login?username=${studentId}&password=${password}`, {
+            const response = await fetch(`https://api.nguyenthanhtrung.online/login?username=${studentId}&password=${password}`, {
               method: 'GET',
               headers: {
                 'Accept': 'application/json',
