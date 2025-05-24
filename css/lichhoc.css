@@ -50,7 +50,6 @@
 
     body.dark-mode {
       background-color: var(--background-color);
-      color: var(--text-primary);
     }
     
 
