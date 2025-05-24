@@ -1,455 +1,4 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thời Khóa Biểu</title>
-  <link rel="stylesheet" href="superstyle.css">
-  <style>
-    :root {
-      --primary-color: #6200ee;
-      --primary-dark: #3700b3;
-      --primary-light: #bb86fc;
-      --secondary-color: #03dac6;
-      --surface-color: #ffffff;
-      --background-color: #f6f6f6;
-      --error-color: #b00020;
-      --text-primary: #212121;
-      --text-secondary: #757575;
-      --text-on-primary: #ffffff;
-      --border-radius: 16px;
-      --shadow: 0 4px 6px rgba(0,0,0,0.1);
-      --transition: all 0.3s ease;
-    }
-    
-    .dark-mode {
-  --primary-color: #44365c;
-  --primary-dark: #363042;
-  --primary-light: #BB86FC;
-  --secondary-color: #03DAC6;
-  --surface-color: #1E1E1E;
-  --background-color: #121212;
-  --error-color: #CF6679;
-  --text-primary: rgb(4, 181, 240);
-  --text-secondary: rgba(255, 255, 255, 0.8);
-  --text-on-primary: #000000;
-  --border-radius: 16px;
-  --shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  --transition: all 0.3s ease;
-  --border: rgba(255, 255, 255, 0.12);
-  --checkbox-color: #03DAC6;
-  --accent-surface: rgba(74, 144, 226, 0.15);
-}
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-      background-color: var(--background-color);
-      color: var(--text-primary);
-      padding: 0;
-      margin: 0;
-      padding-bottom: 60px;
-      line-height: 1.6;
-    }
-    
-
-    .app-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: var(--surface-color);
-      border-radius: 0 0 var(--border-radius) var(--border-radius);
-      box-shadow: var(--shadow);
-      min-height: 100vh;
-      overflow: hidden;
-    }
-    
-    
-
-    .header {
-      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-      color: var(--text-on-primary);
-      padding: 24px 16px;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      border-radius: 0;
-    }
-    
-    .header h1 {
-      text-align: center;
-      font-size: 1.8rem;
-      font-weight: 500;
-      margin: 8px 0;
-      letter-spacing: 0.5px;
-    }
-    
-    .header-subtitle {
-      font-size: 0.9rem;
-      opacity: 0.9;
-      margin-top: 5px;
-      letter-spacing: 0.5px;
-    }
-    
-    .header-actions {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 800px;
-      padding: 0 10px;
-      margin-top: 16px;
-    }
-    
-    .header-icon {
-      background-color: rgba(255, 255, 255, 0.2);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-    
-    .header-icon:hover {
-      background-color: rgba(255, 255, 255, 0.3);
-      transform: scale(1.05);
-    }
-    
-    .container {
-      padding: 0;
-    }
-    
-    .schedule-container {
-      padding: 15px 20px;
-    }
-    
-    .week-header {
-      background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
-      padding: 15px;
-      margin: 16px 0 12px 0;
-      border-radius: var(--border-radius);
-      font-weight: 500;
-      color: var(--text-on-primary);
-      box-shadow: var(--shadow);
-      display: flex;
-      align-items: center;
-    }
-    
-    .week-header i {
-      margin-right: 10px;
-      font-size: 1.1rem;
-    }
-    
-    .day-container {
-      margin-bottom: 24px;
-    }
-    
-    .day-title {
-      background-color: var(--surface-color);
-      padding: 12px 15px;
-      margin-bottom: 12px;
-      border-radius: var(--border-radius);
-      font-weight: 500;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: var(--shadow);
-      border-left: 4px solid var(--primary-color);
-    }
-    
-    .day-title.today {
-      background-color: #ede7f6;
-      border-left: 4px solid var(--secondary-color);
-    }
-    
-    .day-title span:first-child {
-      font-size: 1rem;
-      font-weight: 600;
-    }
-    
-    .day-title span:last-child {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-    }
-    
-    .schedule-item {
-      background-color: var(--surface-color);
-      border-radius: var(--border-radius);
-      margin-bottom: 16px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      border-bottom: 1px solid #eee;
-    }
-    
-    .schedule-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    }
-    
-    .schedule-item.free {
-      background: linear-gradient(135deg, #FF9800, #F57C00);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: 500;
-    }
-    
-    .schedule-item.weekend {
-      background: linear-gradient(135deg, #9C27B0, #7B1FA2);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: 500;
-    }
-    
-    .schedule-item.class {
-      position: relative;
-    }
-    
-    .class-time {
-      padding: 14px 15px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #f8f9fa;
-    }
-    
-    .time-text {
-      font-weight: 500;
-      color: var(--primary-color);
-    }
-    
-    .class-status {
-      display: flex;
-      align-items: center;
-      background-color: #e8f5e9;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      color: #2e7d32;
-    }
-    
-    .class-status i {
-      margin-left: 5px;
-    }
-    
-    .class-details {
-      padding: 16px;
-    }
-    
-    .class-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--primary-light);
-    }
-    
-    .class-info {
-      margin-bottom: 12px;
-      display: flex;
-      align-items: flex-start;
-    }
-    
-    .class-info:last-child {
-      margin-bottom: 0;
-    }
-    
-    .info-icon {
-      background-color: var(--primary-light);
-      color: var(--primary-dark);
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 12px;
-      font-size: 0.8rem;
-    }
-    
-    .no-class-card {
-      background: linear-gradient(135deg, #f5f5f5, #eeeeee);
-      border-radius: var(--border-radius);
-      padding: 20px;
-      text-align: center;
-      font-weight: 500;
-      color: #757575;
-      box-shadow: var(--shadow);
-      border-left: 4px solid #9e9e9e;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .no-class-card i {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #9e9e9e;
-    }
-    
-    .loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 200px;
-      font-size: 1rem;
-      color: var(--text-secondary);
-    }
-    
-    .loading i {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      color: var(--primary-color);
-    }
-    
-    .error-message {
-      background-color: var(--error-color);
-      color: white;
-      padding: 20px;
-      border-radius: var(--border-radius);
-      margin: 15px 0;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-    
-    .error-message i {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      display: block;
-    }
-    
-    /* Thêm CSS cho modal donate */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-    .modal-overlay.active {
-      display: flex;
-    }
-    .modal-content {
-      background: var(--surface-color, #fff);
-      border-radius: 16px;
-      padding: 32px 24px 24px 24px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-      max-width: 350px;
-      width: 90%;
-      text-align: center;
-      position: relative;
-      animation: modalFadeIn 0.2s;
-    }
-    .modal-close {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      cursor: pointer;
-      color: #888;
-      font-size: 1.2rem;
-      transition: color 0.2s;
-    }
-    .modal-close:hover {
-      color: var(--primary-color, #6200ee);
-    }
-    .modal-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-    .qr-image {
-      width: 180px;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      border: 2px solid #eee;
-      background: #fafafa;
-    }
-    .modal-description {
-      margin-top: 10px;
-      color: var(--text-secondary, #757575);
-      font-size: 0.95rem;
-    }
-    @keyframes modalFadeIn {
-      from { transform: translateY(40px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    @media (max-width: 600px) {
-      .header h1 {
-        font-size: 1.5rem;
-      }
-      
-      .day-title {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      
-      .day-title span:last-child {
-        margin-top: 5px;
-      }
-    }
-  </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-  <div class="app-container">
-    <div class="header">
-      <h1>Lịch Học Cá Nhân</h1>
-      <div class="header-subtitle">Have a good day</div>
-      <div class="header-actions">
-        <div class="header-icon" id="change-mode-button"><i class="fas fa-sun"></i></div>
-        <div class="header-icon" id="refresh-button"><i class="fas fa-sync-alt"></i></div>
-      </div>
-      <button class="donate-button" id="donate-button">
-        <i class="fas fa-heart"></i> Donate
-      </button>
-    </div>
-    
-    <div class="container">
-      <div id="loading" class="loading">
-        <i class="fas fa-spinner fa-spin"></i>
-        <div>Đang tải thông tin lịch học...</div>
-      </div>
-      <div class="schedule-container" id="schedule-container">
-      </div>
-    </div>
-  </div>
-  
-  
-  <div class="modal-overlay" id="donate-modal">
-    <div class="modal-content">
-      <div class="modal-close" id="modal-close"><i class="fas fa-times"></i></div>
-      <h3 class="modal-title">Cảm ơn bạn đã ủng hộ!</h3>
-      <img src="https://api.vietqr.io/image/970422-015062005-AZvwQuX.jpg?accountName=NGUYEN%20THANH%20TRUNG&amount=5000&addInfo=donate" alt="QR Code" class="qr-image" id="qr-code">
-      <p>Quét mã QR để chuyển tiền</p>
-      <div class="modal-description">
-        Mọi sự đóng góp đều giúp mình duy trì và phát triển ứng dụng này
-      </div>
-    </div>
-  </div>
- 
-   
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
       
 
       const donateButton = document.getElementById('donate-button');
@@ -472,6 +21,11 @@
         }
       });
 
+      const sayhiText = document.getElementById('say-hi');
+      const studentName = localStorage.getItem('studentName');
+      if(studentName.length >= 6){
+         sayhiText.innerHTML = `Xin Chào <strong>${studentName}</strong> !!!<br> Ngày Hôm Nay Của Bạn Thế Nào?`
+      }
       function formatVietnameseDay(dayNumber) {
         const days = ['Chủ Nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
         return days[dayNumber];
@@ -601,10 +155,13 @@
         timeText.className = 'time-text';
         timeText.innerHTML = `<i class="far fa-clock"></i> ${formatTimeRange(classItem.startTime, classItem.endTime)}`;
         
+       // alert(classItem.startTime);
+
         const classStatus = document.createElement('div');
         classStatus.className = 'class-status';
-        classStatus.innerHTML = 'Lịch học <i class="fas fa-check-circle"></i>';
-        
+        if(classItem.endTime < '13:00')
+        classStatus.innerHTML = 'Lịch sáng <i class="fas fa-sun"></i>';
+        else classStatus.innerHTML = 'Lịch chiều <i class="fas fa-cloud-sun"></i>';
         timeDiv.appendChild(timeText);
         timeDiv.appendChild(classStatus);
         classDiv.appendChild(timeDiv);
@@ -733,7 +290,7 @@
           });
           
           if (Object.keys(currentAndFutureWeeks).length === 0) {
-            showError("Không có lịch học cho thời gian sắp tới", "Tất cả lịch học đã kết thúc");
+            showError("Không có lịch học cho thời gian sắp tới");
             return;
           }
           
@@ -806,6 +363,7 @@
               if (new Date(daysOfWeekToCompare[countDay2++]) >= new Date(today.toDateString())) {
               const dayContainer = document.createElement('div');
               dayContainer.className = 'day-container';
+            //  dayContainer.setAttribute('data-aos', "fade-down");
               const dayTitle = document.createElement('div');
               dayTitle.className = 'day-title';
               
@@ -817,6 +375,17 @@
               
               if (isCurrentWeek && todayVietDay === day) {
                 dayTitle.innerHTML += `<span>Hôm nay</span>`;
+              }
+              
+              if(isCurrentWeek && todayVietDay == "Thứ 2" && day == "Thứ 3"
+              ||isCurrentWeek &&  todayVietDay == "Thứ 3" && day == "Thứ 4"
+              ||isCurrentWeek &&  todayVietDay == "Thứ 4" && day == "Thứ 5"
+              ||isCurrentWeek &&  todayVietDay == "Thứ 5" && day == "Thứ 6"
+              ||isCurrentWeek &&  todayVietDay == "Thứ 6" && day == "Thứ 7"
+              ||isCurrentWeek &&  todayVietDay == "Thứ 7" && day == "Chủ Nhật"
+              ||isCurrentWeek &&  todayVietDay == "Chủ Nhật" && day == "Thứ 2"
+              ){
+                dayTitle.innerHTML += `<span>Ngày mai</span>`;
               }
               
               dayContainer.appendChild(dayTitle);
@@ -849,7 +418,7 @@
             const scheduleContainer = document.getElementById('schedule-container');
             
             if (loadingElement && scheduleContainer) {
-              loadingElement.style.display = 'block';
+              loadingElement.style.display = 'flex';
               scheduleContainer.innerHTML = '';
               renderFullTimetable();
             }
@@ -890,7 +459,3 @@
       
     });
     
-  </script>
-
-</body>
-</html>

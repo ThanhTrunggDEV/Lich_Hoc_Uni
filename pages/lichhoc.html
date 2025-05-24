@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thời Khóa Biểu</title>
+  <link rel="stylesheet" href="/css/shootingstars.css">
+  <link rel="stylesheet" href="/css/lichhoc.css">
+  <style>
+   
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8733105749859874"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="app-container">
+    <div class="header">
+      <h1>Lịch Học Cá Nhân</h1>
+      <div class="header-subtitle" id="say-hi">Vui Lòng Đăng Nhập Lại</div>
+      <div class="header-actions">
+        <div class="header-icon" id="change-mode-button"><i class="fas fa-sun"></i></div>
+        <div class="header-icon" id="refresh-button"><i class="fas fa-sync-alt"></i></div>
+      </div>
+      <button class="donate-button" id="donate-button">
+        <i class="fas fa-heart"></i> Donate
+      </button>
+    </div>
+    
+    <div class="container">
+      <div id="loading" class="loading">
+        <i class="fas fa-spinner fa-spin"></i>
+        <div>Đang tải thông tin lịch học...</div>
+      </div>
+      <div class="schedule-container" id="schedule-container">
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="modal-overlay" id="donate-modal">
+    <div class="modal-content">
+      <div class="modal-close" id="modal-close"><i class="fas fa-times"></i></div>
+      <h3 class="modal-title">Cảm ơn bạn đã ủng hộ!</h3>
+      <img src="https://api.vietqr.io/image/970422-015062005-AZvwQuX.jpg?accountName=NGUYEN%20THANH%20TRUNG&amount=5000&addInfo=donate" alt="QR Code" class="qr-image" id="qr-code">
+      <p>Quét mã QR để chuyển tiền</p>
+      <div class="modal-description">
+        Mọi sự đóng góp đều giúp mình duy trì và phát triển ứng dụng này
+      </div>
+    </div>
+  </div>
+  <script src="/scripts/lichhoc.js"></script>
+</body>
+</html>

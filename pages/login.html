@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng Nhập | Lịch Học Sinh Viên</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8733105749859874"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <div class="login-logo">
+        <i class="fas fa-calendar-alt"></i>
+      </div>
+      <h1>Lịch Học Cá Nhân</h1>
+      <p>Vui lòng đăng nhập để xem lịch học</p>
+    </div>
+    
+    <div class="login-form">
+      <div id="error-message" class="error-message">
+        <i class="fas fa-exclamation-circle"></i>
+        <span>Thông tin đăng nhập không chính xác!</span>
+      </div>
+      
+      <form id="login-form">
+        <div class="form-group">
+          <label for="studentId">Mã Sinh Viên</label>
+          <div class="input-group">
+            <i class="fas fa-user input-icon"></i>
+            <input type="text" id="studentId" class="form-control" placeholder="Nhập mã sinh viên" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Mật Khẩu</label>
+          <div class="input-group">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="password" class="form-control" placeholder="Nhập mật khẩu" required>
+            <i class="far fa-eye password-toggle" id="password-toggle"></i>
+          </div>
+        </div>
+         <div class="remember-me">
+          <input type="checkbox" id="remember" name="remember">
+          <label for="remember">Ghi nhớ đăng nhập</label>
+        </div>
+        <button type="submit" class="btn" id="login-button">
+          <i class="fas fa-sign-in-alt"></i> Đăng Nhập
+        </button>
+      </form>
+    </div>
+    
+    <div class="login-footer">
+      <p>© 2025 Hệ Thống Xem Lịch Học Sinh Viên ICTU</p>
+    </div>
+  </div>
+
+ <script src="/scripts/login.js"></script>
+</body>
+</html>
