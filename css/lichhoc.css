@@ -15,22 +15,22 @@
     }
     
     .dark-mode {
-  --primary-color: #44365c;
-  --primary-dark: #363042;
-  --primary-light: #BB86FC;
-  --secondary-color: #03DAC6;
-  --surface-color: #1E1E1E;
-  --background-color: #121212;
-  --error-color: #CF6679;
-  --text-primary: rgb(4, 181, 240);
-  --text-secondary: rgba(255, 255, 255, 0.8);
-  --text-on-primary: #000000;
+  --primary-color: #7c4dff;           
+  --primary-dark: #232136;            
+  --primary-light: #a599e9;           
+  --secondary-color: #21c7a8;         
+  --surface-color: #232136;           
+  --background-color: #181825;        
+  --error-color: #ff5370;             
+  --text-primary: #e0def4;            
+  --text-secondary: #a3a3b2;          
+  --text-on-primary: #ffffff;         
   --border-radius: 16px;
-  --shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow: 0 4px 8px rgba(30, 30, 46, 0.6);
   --transition: all 0.3s ease;
-  --border: rgba(255, 255, 255, 0.12);
-  --checkbox-color: #03DAC6;
-  --accent-surface: rgba(74, 144, 226, 0.15);
+  --border: rgba(224, 222, 244, 0.12);
+  --checkbox-color: #21c7a8;
+  --accent-surface: rgba(124, 77, 255, 0.10);
 }
     * {
       margin: 0;
@@ -46,6 +46,11 @@
       margin: 0;
       padding-bottom: 60px;
       line-height: 1.6;
+    }
+
+    body.dark-mode {
+      background-color: var(--background-color);
+      color: var(--text-primary);
     }
     
 
@@ -161,6 +166,16 @@
       border-left: 4px solid var(--secondary-color);
     }
     
+    .day-title.tomorrow {
+      background-color: #ede7f6;
+      border-left: 4px solid #21c7a8;
+    }
+    
+    .dark-mode .day-title.tomorrow {
+      background-color: #b8cfec;
+      border-left: 4px solid #21c7a8;
+    }
+    
     .day-title span:first-child {
       font-size: 1rem;
       font-weight: 600;
@@ -218,6 +233,11 @@
       justify-content: space-between;
       align-items: center;
       background-color: #f8f9fa;
+    }
+    
+    .dark-mode .class-time {
+      background-color: #1a1830;
+      border-bottom: 1px solid rgba(224, 222, 244, 0.08);
     }
     
     .time-text {
@@ -550,10 +570,10 @@
   font-size: 1.1rem;
 }
 
-.dark-mode .no-exam-card {
-  background: linear-gradient(135deg, #1b2d1b, #1e1e1e);
-  color: #81c784;
-  border-left: 4px solid #66bb6a;
+.dark-mode .no-class-card {
+  background: linear-gradient(135deg, #232136, #181825);
+  color: #b5bfe2;
+  border-left: 4px solid #7c4dff;
 }
 
 .no-exam-card i {
@@ -666,4 +686,32 @@
 }
 .donate-button:active {
   transform: scale(0.97);
+}
+
+.class-info {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.class-info:last-child {
+  margin-bottom: 0;
+}
+
+.info-icon {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 0.8rem;
+}
+
+
+.dark-mode .class-info {
+  color: var(--text-primary);
 }

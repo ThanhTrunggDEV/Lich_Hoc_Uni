@@ -361,42 +361,61 @@ document.addEventListener('DOMContentLoaded', function() {
               
               
               if (new Date(daysOfWeekToCompare[countDay2++]) >= new Date(today.toDateString())) {
-              const dayContainer = document.createElement('div');
-              dayContainer.className = 'day-container';
-            //  dayContainer.setAttribute('data-aos', "fade-down");
-              const dayTitle = document.createElement('div');
-              dayTitle.className = 'day-title';
-              
-              if (isCurrentWeek && todayVietDay === day) {
-                dayTitle.classList.add('today');
-              }
-              
-              dayTitle.innerHTML = `<span>${day} Ngày ${daysOfWeek[countDay]}</span>`;
-              
-              if (isCurrentWeek && todayVietDay === day) {
-                dayTitle.innerHTML += `<span>Hôm nay</span>`;
-              }
-              
-              if(isCurrentWeek && todayVietDay == "Thứ 2" && day == "Thứ 3"
-              ||isCurrentWeek &&  todayVietDay == "Thứ 3" && day == "Thứ 4"
-              ||isCurrentWeek &&  todayVietDay == "Thứ 4" && day == "Thứ 5"
-              ||isCurrentWeek &&  todayVietDay == "Thứ 5" && day == "Thứ 6"
-              ||isCurrentWeek &&  todayVietDay == "Thứ 6" && day == "Thứ 7"
-              ||isCurrentWeek &&  todayVietDay == "Thứ 7" && day == "Chủ Nhật"
-              ||isCurrentWeek &&  todayVietDay == "Chủ Nhật" && day == "Thứ 2"
-              ){
-                dayTitle.innerHTML += `<span>Ngày mai</span>`;
-              }
-              
-              dayContainer.appendChild(dayTitle);
-              if (dayClasses.length === 0) {
-                dayContainer.appendChild(createEmptyDayCard());
-              } else {
-                dayClasses.forEach(classItem => {
-                  dayContainer.appendChild(createClassCard(classItem));
-                });
-              }
-              scheduleContainer.appendChild(dayContainer);
+                const dayContainer = document.createElement('div');
+                dayContainer.className = 'day-container';
+                const dayTitle = document.createElement('div');
+                dayTitle.className = 'day-title';
+                
+                if (isCurrentWeek && todayVietDay === day) {
+                  dayTitle.classList.add('today');
+                }
+                
+           
+                if (
+                  isCurrentWeek &&
+                  (
+                    (todayVietDay == "Thứ 2" && day == "Thứ 3") ||
+                    (todayVietDay == "Thứ 3" && day == "Thứ 4") ||
+                    (todayVietDay == "Thứ 4" && day == "Thứ 5") ||
+                    (todayVietDay == "Thứ 5" && day == "Thứ 6") ||
+                    (todayVietDay == "Thứ 6" && day == "Thứ 7") ||
+                    (todayVietDay == "Thứ 7" && day == "Chủ Nhật") ||
+                    (todayVietDay == "Chủ Nhật" && day == "Thứ 2")
+                  )
+                ) {
+                  dayTitle.classList.add('tomorrow');
+                }
+                
+                dayTitle.innerHTML = `<span>${day} Ngày ${daysOfWeek[countDay]}</span>`;
+                
+                if (isCurrentWeek && todayVietDay === day) {
+                  dayTitle.innerHTML += `<span>Hôm nay</span>`;
+                }
+                
+                if (
+                  isCurrentWeek &&
+                  (
+                    (todayVietDay == "Thứ 2" && day == "Thứ 3") ||
+                    (todayVietDay == "Thứ 3" && day == "Thứ 4") ||
+                    (todayVietDay == "Thứ 4" && day == "Thứ 5") ||
+                    (todayVietDay == "Thứ 5" && day == "Thứ 6") ||
+                    (todayVietDay == "Thứ 6" && day == "Thứ 7") ||
+                    (todayVietDay == "Thứ 7" && day == "Chủ Nhật") ||
+                    (todayVietDay == "Chủ Nhật" && day == "Thứ 2")
+                  )
+                ) {
+                  dayTitle.innerHTML += `<span>Ngày mai</span>`;
+                }
+                
+                dayContainer.appendChild(dayTitle);
+                if (dayClasses.length === 0) {
+                  dayContainer.appendChild(createEmptyDayCard());
+                } else {
+                  dayClasses.forEach(classItem => {
+                    dayContainer.appendChild(createClassCard(classItem));
+                  });
+                }
+                scheduleContainer.appendChild(dayContainer);
               }
               countDay++;   
             });
