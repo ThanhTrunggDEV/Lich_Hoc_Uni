@@ -4,6 +4,12 @@ FROM nginx:alpine
 COPY pages/mainPage.html /usr/share/nginx/html/index.html
 COPY pages/lichhoc.html /usr/share/nginx/html/lichhoc.html
 COPY pages/login.html /usr/share/nginx/html/login.html
+COPY pages/about.html /usr/share/nginx/html/about.html
+COPY pages/contact.html /usr/share/nginx/html/contact.html
+COPY pages/privacy.html /usr/share/nginx/html/privacy.html
+COPY pages/terms.html /usr/share/nginx/html/terms.html
+
+COPY sitemap.xml /usr/share/nginx/html/sitemap.xml
 
 COPY css/mainPageStyle.css /usr/share/nginx/html/css/mainPageStyle.css
 COPY css/lichhoc.css /usr/share/nginx/html/css/lichhoc.css
