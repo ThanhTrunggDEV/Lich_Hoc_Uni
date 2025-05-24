@@ -10,7 +10,6 @@ COPY css/lichhoc.css /usr/share/nginx/html/css/lichhoc.css
 COPY css/login.css /usr/share/nginx/html/css/login.css
 COPY css/shootingstars.css /usr/share/nginx/html/css/shootingstars.css
 
-COPY scripts/mainpage.js /usr/share/nginx/html/scripts/mainpage.js
 COPY scripts/lichhoc.js /usr/share/nginx/html/scripts/lichhoc.js
 COPY scripts/login.js /usr/share/nginx/html/scripts/login.js
 

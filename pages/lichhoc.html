@@ -2,53 +2,77 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="content-language" content="vi">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thời Khóa Biểu</title>
+  <title>Lịch Học Cá Nhân | Nguyễn Thành Trung ICTU</title>
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Xem lịch học cá nhân, lịch thi, thời khóa biểu sinh viên ICTU. Giao diện đẹp, hỗ trợ chế độ tối, chuyển đổi lịch học/lịch thi.">
+  <meta name="keywords" content="lịch học, lịch thi, ICTU, Nguyễn Thành Trung, thời khóa biểu, sinh viên, cá nhân, lịch học ICTU, lịch học cá nhân, lịch học đại học">
+  <meta name="author" content="Nguyễn Thành Trung">
+  <meta property="og:title" content="Lịch Học Cá Nhân | Nguyễn Thành Trung ICTU">
+  <meta property="og:description" content="Xem lịch học, lịch thi, thời khóa biểu sinh viên ICTU. Giao diện đẹp, hỗ trợ chế độ tối">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nguyenthanhtrung.online/lichhoc.html">
+  <meta property="og:image" content="https://nguyenthanhtrung.online/images/16206597.png">
+  <link rel="canonical" href="https://nguyenthanhtrung.online/lichhoc.html">
+  <link rel="shortcut icon" href="/images and icons/16206597.png" type="image/x-icon">
   <link rel="stylesheet" href="/css/shootingstars.css">
   <link rel="stylesheet" href="/css/lichhoc.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Lịch Học Cá Nhân | Nguyễn Thành Trung ICTU",
+    "description": "Xem lịch học cá nhân, lịch thi, thời khóa biểu sinh viên ICTU. Giao diện đẹp, hỗ trợ chế độ tối, chuyển đổi lịch học/lịch thi.",
+    "url": "https://nguyenthanhtrung.online/lichhoc.html",
+    "author": {
+      "@type": "Person",
+      "name": "Nguyễn Thành Trung"
+    },
+    "image": "https://nguyenthanhtrung.online/images/16206597.png"
+  }
+  </script>
 </head>
 <body>
   <div class="app-container">
-    <div class="header">
+    <header class="header">
       <h1>Lịch Học Cá Nhân</h1>
       <div class="header-subtitle" id="say-hi">Vui Lòng Đăng Nhập Lại</div>
-
-<div class="header-actions">
-  <div class="header-icon" id="change-mode-button" title="Chuyển chế độ sáng/tối">
-    <i class="fas fa-sun"></i>
-  </div>
-  <button id="toggle-view-button" class="toggle-view-btn" title="Xem lịch thi">
-    <i class="fas fa-graduation-cap"></i>
-  </button>
-  <div class="header-icon" id="refresh-button" title="Làm mới">
-    <i class="fas fa-sync-alt"></i>
-  </div>
-</div>
-
+      <nav class="header-actions" aria-label="Chức năng nhanh">
+        <div class="header-icon" id="change-mode-button" title="Chuyển chế độ sáng/tối">
+          <i class="fas fa-sun"></i>
+        </div>
+        <button id="toggle-view-button" class="toggle-view-btn" title="Xem lịch thi">
+          <i class="fas fa-graduation-cap"></i>
+        </button>
+        <div class="header-icon" id="refresh-button" title="Làm mới">
+          <i class="fas fa-sync-alt"></i>
+        </div>
+      </nav>
       <button class="donate-button" id="donate-button">
         <i class="fas fa-heart"></i> Donate
       </button>
-    </div>
-    
-    <div class="container">
-      <div id="loading" class="loading">
-        <i class="fas fa-spinner fa-spin"></i>
-        <div>Đang tải...</div>
+    </header>
+    <main>
+      <div class="container">
+        <div id="loading" class="loading" aria-live="polite">
+          <i class="fas fa-spinner fa-spin"></i>
+          <div>Đang tải...</div>
+        </div>
+        <div class="schedule-container" id="schedule-container">
+        </div>
       </div>
-      <div class="schedule-container" id="schedule-container">
-      </div>
-    </div>
+    </main>
   </div>
-  
-  
   <div class="modal-overlay" id="donate-modal">
-    <div class="modal-content">
-      <div class="modal-close" id="modal-close"><i class="fas fa-times"></i></div>
-      <h3 class="modal-title"><i class="fas fa-heart"></i> Cảm ơn bạn đã ủng hộ!</h3>
-      <img src="https://api.vietqr.io/image/970422-015062005-AZvwQuX.jpg?accountName=NGUYEN%20THANH%20TRUNG&amount=5000&addInfo=donate" alt="QR Code" class="qr-image" id="qr-code">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="donate-modal-title">
+      <div class="modal-close" id="modal-close" title="Đóng"><i class="fas fa-times"></i></div>
+      <h2 class="modal-title" id="donate-modal-title"><i class="fas fa-heart"></i> Cảm ơn bạn đã ủng hộ!</h2>
+      <img src="https://api.vietqr.io/image/970422-015062005-AZvwQuX.jpg?accountName=NGUYEN%20THANH%20TRUNG&amount=5000&addInfo=donate"
+           alt="Mã QR chuyển khoản ủng hộ Nguyễn Thành Trung" class="qr-image" id="qr-code" loading="lazy">
       <p style="margin: 10px 0 0 0; color: #ff4081; font-weight: 500;">
         <i class="fas fa-qrcode"></i> Quét mã QR để chuyển khoản
       </p>
