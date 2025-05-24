@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const sayhiText = document.getElementById('say-hi');
       const studentName = localStorage.getItem('studentName');
-      if(studentName.length >= 6){
+      if(studentName && studentName.length >= 6){
          sayhiText.innerHTML = `Xin Chào <strong>${studentName}</strong> !!!<br> Ngày Hôm Nay Của Bạn Thế Nào?`
       }
       function formatVietnameseDay(dayNumber) {
@@ -456,6 +456,177 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
       });
-      
+      let isShowingExamSchedule = false;
+
+
+function createExamCard(examItem) {
+  const examDiv = document.createElement('div');
+  examDiv.className = 'schedule-item exam';
+  
+  
+  const timeDiv = document.createElement('div');
+  timeDiv.className = 'exam-time';
+  
+  const dateText = document.createElement('div');
+  dateText.className = 'exam-date';
+  dateText.innerHTML = `<i class="far fa-calendar-check"></i> ${examItem.ngay_thi}`;
+  
+  const timeText = document.createElement('div');
+  timeText.className = 'exam-time-detail';
+  timeText.innerHTML = `<i class="far fa-clock"></i> ${examItem.thoi_gian_thi.replace('\n', ' ')}`;
+  
+  timeDiv.appendChild(dateText);
+  timeDiv.appendChild(timeText);
+  examDiv.appendChild(timeDiv);
+  
+  
+  const detailsDiv = document.createElement('div');
+  detailsDiv.className = 'exam-details';
+  
+  const titleDiv = document.createElement('div');
+  titleDiv.className = 'exam-title';
+  titleDiv.textContent = examItem.ten_hoc_phan;
+  detailsDiv.appendChild(titleDiv);
+  
+  const codeInfo = document.createElement('div');
+  codeInfo.className = 'exam-info';
+  codeInfo.innerHTML = `<div class="info-icon"><i class="fas fa-code"></i></div> Mã HP: ${examItem.ma_hoc_phan} (${examItem.tin_chi} tín chỉ)`;
+  detailsDiv.appendChild(codeInfo);
+  
+  const typeInfo = document.createElement('div');
+  typeInfo.className = 'exam-info';
+  typeInfo.innerHTML = `<div class="info-icon"><i class="fas fa-edit"></i></div> Hình thức: ${examItem.hinh_thuc_thi}`;
+  detailsDiv.appendChild(typeInfo);
+  
+  const roomInfo = document.createElement('div');
+  roomInfo.className = 'exam-info';
+  roomInfo.innerHTML = `<div class="info-icon"><i class="fas fa-door-open"></i></div> Phòng thi: ${examItem.phong_thi}`;
+  detailsDiv.appendChild(roomInfo);
+  
+  const seatInfo = document.createElement('div');
+  seatInfo.className = 'exam-info';
+  seatInfo.innerHTML = `<div class="info-icon"><i class="fas fa-user-check"></i></div> Số báo danh: ${examItem.so_bao_danh}`;
+  detailsDiv.appendChild(seatInfo);
+  
+  examDiv.appendChild(detailsDiv);
+  return examDiv;
+}
+
+function createNoExamCard() {
+  const emptyDiv = document.createElement('div');
+  emptyDiv.className = 'no-class-card';
+  emptyDiv.innerHTML = '<i class="fas fa-coffee"></i> Không có lịch thi nào!';
+  return emptyDiv;
+}
+
+
+
+async function renderExamSchedule() {
+  const scheduleContainer = document.getElementById('schedule-container');
+  const loadingElement = document.getElementById('loading');
+  const headerTitle = document.querySelector('.header h1');
+  
+  if (!scheduleContainer || !loadingElement) {
+    console.error('Required DOM elements not found!');
+    return;
+  }
+  
+
+  headerTitle.textContent = 'Lịch Thi Cá Nhân';
+ 
+  
+  scheduleContainer.innerHTML = '';
+  loadingElement.style.display = 'flex';
+  
+  try {
+    const studentID = localStorage.getItem('studentID');
+    const password = localStorage.getItem('password');
+    
+    const response = await fetch(`https://api.nguyenthanhtrung.online/download_lichthi?username=${studentID}&password=${password}`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
     });
     
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Status: ${response.status}, Message: ${errorText}`);
+    }
+    
+    const examData = await response.json();
+    loadingElement.style.display = 'none';
+    
+    if (!examData || examData.length === 0) {
+      scheduleContainer.appendChild(createNoExamCard());
+      return;
+    }
+    
+    const sortedExams = examData.slice().sort((a, b) => {
+      const [da, ma, ya] = a.ngay_thi.split('/').map(Number);
+      const [db, mb, yb] = b.ngay_thi.split('/').map(Number);
+      const dateA = new Date(ya, ma - 1, da);
+      const dateB = new Date(yb, mb - 1, db);
+      return dateA - dateB;
+    });
+
+    const examHeader = document.createElement('div');
+    examHeader.className = 'week-header exam-header';
+    examHeader.innerHTML = `<i class="fas fa-graduation-cap"></i> Lịch Thi`;
+    scheduleContainer.appendChild(examHeader);
+
+    sortedExams.forEach(exam => {
+      const examContainer = document.createElement('div');
+      examContainer.className = 'exam-container';
+      examContainer.appendChild(createExamCard(exam));
+      scheduleContainer.appendChild(examContainer);
+    });
+    
+  } catch (error) {
+    console.error("Error fetching exam schedule:", error);
+    loadingElement.style.display = 'none';
+    showError("Không thể tải lịch thi", error.message);
+  }
+}
+
+const toggleButton = document.getElementById('toggle-view-button');
+if (toggleButton) {
+  toggleButton.addEventListener('click', ()=>toggleScheduleView());
+}
+function toggleScheduleView() {
+  const toggleButton = document.getElementById('toggle-view-button');
+  const headerTitle = document.querySelector('.header h1');
+  const headerSubtitle = document.querySelector('.header-subtitle');
+  const studentName = localStorage.getItem('studentName');
+  
+  if (isShowingExamSchedule) {
+    isShowingExamSchedule = false;
+    if (toggleButton) {
+      toggleButton.innerHTML = '<i class="fas fa-graduation-cap"></i>';
+      toggleButton.title = 'Xem lịch thi';
+    }
+    headerTitle.textContent = 'Lịch Học Cá Nhân';
+    if(studentName && studentName.length >= 6){
+      headerSubtitle.innerHTML = `Xin Chào <strong>${studentName}</strong> !!!<br> Ngày Hôm Nay Của Bạn Thế Nào?`;
+    } else {
+      headerSubtitle.textContent = 'Vui Lòng Đăng Nhập Lại';
+    }
+
+    const loadingElement = document.getElementById('loading');
+    const scheduleContainer = document.getElementById('schedule-container');
+    if (loadingElement && scheduleContainer) {
+      loadingElement.style.display = 'flex';
+      scheduleContainer.innerHTML = '';
+      renderFullTimetable();
+    }
+  } else {
+    isShowingExamSchedule = true;
+    if (toggleButton) {
+      toggleButton.innerHTML = '<i class="fas fa-calendar-alt"></i>';
+      toggleButton.title = 'Xem lịch học';
+    }
+    renderExamSchedule();
+  }
+}
+});

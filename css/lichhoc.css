@@ -1,4 +1,4 @@
- :root {
+:root {
       --primary-color: #6200ee;
       --primary-dark: #3700b3;
       --primary-light: #bb86fc;
@@ -329,72 +329,341 @@
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.65);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 1000;
+      transition: background 0.3s;
+      min-height: 100vh;
     }
     .modal-overlay.active {
       display: flex;
+      animation: overlayFadeIn 0.25s;
+    }
+    @keyframes overlayFadeIn {
+      from { background: rgba(0,0,0,0.0);}
+      to   { background: rgba(0,0,0,0.65);}
     }
     .modal-content {
-      background: var(--surface-color, #fff);
-      border-radius: 16px;
+      background: var(--surface-color, #fff) !important;
+      border-radius: 20px;
       padding: 32px 24px 24px 24px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.25);
       max-width: 350px;
       width: 90%;
       text-align: center;
       position: relative;
-      animation: modalFadeIn 0.2s;
+      animation: modalFadeIn 0.25s;
+      margin: 0;
+      box-sizing: border-box;
+      border: 1.5px solid #ff80ab;
+    }
+    @keyframes modalFadeIn {
+      from { transform: translateY(60px) scale(0.95); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
     }
     .modal-close {
       position: absolute;
       top: 12px;
       right: 12px;
       cursor: pointer;
-      color: #888;
-      font-size: 1.2rem;
-      transition: color 0.2s;
+      color: #ff4081;
+      font-size: 1.3rem;
+      background: #fff;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      z-index: 2;
+      border: 1px solid #eee;
     }
     .modal-close:hover {
-      color: var(--primary-color, #6200ee);
+      background: #ff80ab;
+      color: #fff;
     }
     .modal-title {
       font-size: 1.2rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 16px;
+      color: #ff4081;
+      letter-spacing: 0.5px;
     }
     .qr-image {
-      width: 180px;
+      width: 200px;
       height: 250px;
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: 18px;
       margin-bottom: 12px;
-      border: 2px solid #eee;
+      border: 2.5px solid #ff80ab;
       background: #fafafa;
+      box-shadow: 0 2px 12px rgba(255,64,129,0.10);
+      transition: transform 0.2s;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .qr-image:hover {
+      transform: scale(1.04) rotate(-2deg);
+      box-shadow: 0 4px 24px rgba(255,64,129,0.18);
     }
     .modal-description {
       margin-top: 10px;
       color: var(--text-secondary, #757575);
-      font-size: 0.95rem;
+      font-size: 0.98rem;
+      font-style: italic;
     }
-    @keyframes modalFadeIn {
-      from { transform: translateY(40px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    @media (max-width: 600px) {
-      .header h1 {
-        font-size: 1.5rem;
+    @media (max-width: 500px) {
+      .modal-content {
+        padding: 18px 6px 18px 6px;
+        max-width: 98vw;
+        margin: 0 auto;
       }
-      
-      .day-title {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      
-      .day-title span:last-child {
-        margin-top: 5px;
+      .qr-image {
+        width: 140px;
+        height: 140px;
       }
     }
+
+    .schedule-item.exam {
+  border-left: 4px solid #ff5722;
+  background: linear-gradient(135deg, #fff3e0, #ffffff);
+}
+
+.dark-mode .schedule-item.exam {
+  background: linear-gradient(135deg, #2d1b1b, #1e1e1e);
+  border-left: 4px solid #ff7043;
+}
+
+.exam-header {
+  background: linear-gradient(135deg, #ff5722, #d84315) !important;
+  color: white !important;
+}
+
+.exam-time {
+  padding: 14px 15px;
+  border-bottom: 1px solid rgba(255, 87, 34, 0.1);
+  background: linear-gradient(135deg, #ffebee, #fff3e0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dark-mode .exam-time {
+  background: linear-gradient(135deg, #3d2d2d, #2d1b1b);
+  border-bottom: 1px solid rgba(255, 112, 67, 0.2);
+}
+
+.exam-date {
+  font-weight: 600;
+  color: #d84315;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dark-mode .exam-date {
+  color: #ff7043;
+}
+
+.exam-time-detail {
+  font-weight: 500;
+  color: #ff5722;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dark-mode .exam-time-detail {
+  color: #ff8a65;
+}
+
+.exam-details {
+  padding: 16px;
+}
+
+.exam-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #d84315;
+  line-height: 1.4;
+}
+
+.dark-mode .exam-title {
+  color: #ff7043;
+}
+
+.exam-info {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.5;
+}
+
+.exam-info:last-child {
+  margin-bottom: 0;
+}
+
+.exam-info .info-icon {
+  background-color: #ff5722;
+  color: white;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.dark-mode .exam-info .info-icon {
+  background-color: #ff7043;
+  color: #1e1e1e;
+}
+
+.exam-container {
+  margin-bottom: 20px;
+}
+
+.no-exam-card {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  border-radius: var(--border-radius);
+  padding: 30px 20px;
+  text-align: center;
+  font-weight: 600;
+  color: #388e3c;
+  box-shadow: var(--shadow);
+  border-left: 4px solid #4caf50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.dark-mode .no-exam-card {
+  background: linear-gradient(135deg, #1b2d1b, #1e1e1e);
+  color: #81c784;
+  border-left: 4px solid #66bb6a;
+}
+
+.no-exam-card i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #4caf50;
+}
+
+.dark-mode .no-exam-card i {
+  color: #66bb6a;
+}
+
+
+.schedule-item.exam:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 87, 34, 0.15);
+}
+
+.dark-mode .schedule-item.exam:hover {
+  box-shadow: 0 8px 20px rgba(255, 112, 67, 0.2);
+}
+
+@media (max-width: 600px) {
+  .exam-time {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .exam-date {
+    font-size: 1rem;
+  }
+  
+  .exam-time-detail {
+    font-size: 0.85rem;
+  }
+  
+  .exam-title {
+    font-size: 1.1rem;
+  }
+  
+  .exam-info {
+    font-size: 0.9rem;
+  }
+}
+
+.schedule-container {
+  transition: opacity 0.3s ease;
+}
+
+.schedule-container.fade-out {
+  opacity: 0;
+}
+
+.schedule-container.fade-in {
+  opacity: 1;
+}
+
+.toggle-view-btn {
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-light));
+  color: var(--text-on-primary);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  margin: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  outline: none;
+}
+.toggle-view-btn:hover {
+  background: linear-gradient(135deg, var(--primary-light), var(--secondary-color));
+  transform: scale(1.08);
+  color: #fff;
+}
+.toggle-view-btn:active {
+  transform: scale(0.96);
+}
+
+.donate-button {
+  background: linear-gradient(135deg, #ff4081, #ff80ab);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 18px;
+  box-shadow: 0 2px 8px rgba(255, 64, 129, 0.12);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.donate-button i {
+  font-size: 1.1rem;
+}
+.donate-button:hover, .donate-button:focus {
+  background: linear-gradient(135deg, #ff80ab, #ff4081);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px rgba(255, 64, 129, 0.18);
+  color: #fff;
+}
+.donate-button:active {
+  transform: scale(0.97);
+}
