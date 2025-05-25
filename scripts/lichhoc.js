@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+  const studentID = localStorage.getItem('studentID');
+  const password = localStorage.getItem('password');
+  if (!studentID || !password) {
+    window.location.href = '/login.html';
+    return;
+  }
 
   const donateButton = document.getElementById('donate-button');
   const donateModal = document.getElementById('donate-modal');
