@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
         weekHeader.className = 'week-header';
         weekHeader.innerHTML = `<i class="far fa-calendar-alt"></i> ${week}`;
         scheduleContainer.appendChild(weekHeader);
-        // Tính ngày trong tuần
+       
         const dateRangeMatch = week.match(/(\d{2})\/(\d{2})\/(\d{4}) đến (\d{2})\/(\d{2})\/(\d{4})/);
         const allNumbers = dateRangeMatch.slice(1).map(Number);
         const startDate = new Date(allNumbers[2], allNumbers[1] - 1, allNumbers[0]);
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Refresh
+
   try {
     renderFullTimetable();
     const refreshButton = document.getElementById('refresh-button');
@@ -244,9 +244,27 @@ document.addEventListener('DOMContentLoaded', function() {
     showError("Lỗi khởi tạo ứng dụng", initError.message);
   }
 
-  // Dark mode
   const changeModeButton = document.getElementById('change-mode-button');
   let isDarkMode = false;
+
+  (function autoDarkModeByTime() {
+    const now = new Date();
+    const hour = now.getHours();
+    if (hour >= 19 || hour < 5) {
+      document.body.classList.add('dark-mode');
+      isDarkMode = true;
+      changeModeButton.innerHTML = '<i class="fas fa-moon"></i>';
+      const newDiv = document.createElement('div');
+      newDiv.className = 'stars';
+      for (let i = 0; i < 30; i++) {
+        const tempDiv = document.createElement('div');
+        tempDiv.className = 'star';
+        newDiv.appendChild(tempDiv);
+      }
+      document.body.appendChild(newDiv);
+    }
+  })();
+
   changeModeButton.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     isDarkMode = !isDarkMode;
@@ -266,7 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Lịch thi
   let isShowingExamSchedule = false;
   function createExamCard(examItem) {
     const examDiv = document.createElement('div');
@@ -340,7 +357,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Toggle view
+
   const toggleButton = document.getElementById('toggle-view-button');
   if (toggleButton) toggleButton.addEventListener('click', toggleScheduleView);
   function toggleScheduleView() {
