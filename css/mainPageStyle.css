@@ -36,6 +36,7 @@ h1 {
     animation: animateBorder 5s infinite;
     align-self: start;
     align-items: flex-start;
+    flex: 1 0 auto;
 }
 .scrollable {
     overflow-y: auto;          
@@ -54,13 +55,14 @@ h1 {
     justify-content: flex-start; 
 }
 
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+.page-footer {
     text-align: center;
     background-color: #000;
     padding: 10px 0;
+    margin-top: 40px;
+    color: #888;
+    font-size: 1em;
+    width: 100%;
 }
 
 @media (max-width: 750px) {
@@ -76,11 +78,18 @@ h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     line-height: 1.6;
     color: #333;
     background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
     padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {

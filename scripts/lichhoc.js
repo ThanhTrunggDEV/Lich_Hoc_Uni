@@ -264,12 +264,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const studentID = localStorage.getItem('studentID');
             const password = localStorage.getItem('password');
             
-            const response = await fetch(`https://api.nguyenthanhtrung.online/download?username=${studentID}&password=${password}`, {
-              method: 'GET',
+            const response = await fetch(`https://api.nguyenthanhtrung.online/download`, {
+              method: 'POST',
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-              }
+              },
+              body: JSON.stringify({
+              username: studentID,
+              password: password
+            })
             });
             
             
@@ -561,12 +565,16 @@ async function renderExamSchedule() {
     const studentID = localStorage.getItem('studentID');
     const password = localStorage.getItem('password');
     
-    const response = await fetch(`https://api.nguyenthanhtrung.online/download_lichthi?username=${studentID}&password=${password}`, {
-      method: 'GET',
+    const response = await fetch(`https://api.nguyenthanhtrung.online/download_lichthi`, {
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({
+            username: studentID,
+            password: password
+            })
     });
     
     if (!response.ok) {

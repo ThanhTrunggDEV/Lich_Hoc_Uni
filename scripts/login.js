@@ -66,12 +66,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     setTimeout(async function() {
       try {
-        const response = await fetch(`https://api.nguyenthanhtrung.online/login?username=${studentId}&password=${password}`, {
-          method: 'GET',
+        const response = await fetch(`https://api.nguyenthanhtrung.online/login`, {
+          method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }
+          },
+          body: JSON.stringify({
+            username: studentId,
+            password: password
+            })
         });
         let data = await response.json();
         const studentName = data['data'];
