@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const passwordInput = document.getElementById('password');
   const errorMessage = document.getElementById('error-message');
   const studentIdInput = document.getElementById('studentId');
-  const rememberCheckbox = document.getElementById('remember');
   const loginButton = document.getElementById('login-button');
 
   passwordToggle.addEventListener('click', function() {
