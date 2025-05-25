@@ -396,4 +396,46 @@ document.addEventListener('DOMContentLoaded', function() {
       renderExamSchedule();
     }
   }
+
+   function sendHeartBeat(){
+     let clientId = localStorage.getItem("client_id");
+ if (!clientId) {
+  clientId = crypto.randomUUID(); 
+  localStorage.setItem("client_id", clientId);
+}
+ fetch('https://api.nguyenthanhtrung.online/heartbeat', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ client_id: clientId })
+});
+   }
+
+  const floatingCount = document.getElementById('online-count-floating');
+  if (floatingCount) floatingCount.innerText = 'Đang online: ...';
+
+  function updateOnlineUsers() {
+    fetch('https://api.nguyenthanhtrung.online/online-users')
+      .then(res => res.json())
+      .then(data => {
+        const text = `Đang online: ${data.online_users}`;
+        const headerCount = document.getElementById('online-count');
+        if (headerCount) headerCount.innerText = text;
+        const floatingCount = document.getElementById('online-count-floating');
+        if (floatingCount) floatingCount.innerText = text;
+      })
+      .catch(err => {
+        const floatingCount = document.getElementById('online-count-floating');
+        if (floatingCount) floatingCount.innerText = 'Đang online: ...';
+        console.error("Lỗi khi lấy số lượng online:", err);
+      });
+  }
+
+  sendHeartBeat();
+  updateOnlineUsers();
+
+  setInterval(updateOnlineUsers, 10000);
+  setInterval(sendHeartBeat, 10000);
+
 });

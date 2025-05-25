@@ -63,7 +63,22 @@
       overflow: hidden;
     }
     
-    
+    #online-count-floating{
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 99999;
+    background: rgba(255,255,255,0.95);
+    color: #388e3c;
+    border-radius: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 8px 18px;
+    font-size: 1em;
+    font-weight: 500;
+    pointer-events: none;
+    transition: background 0.2s;
+    display: block;
+    }
 
     .header {
       background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
