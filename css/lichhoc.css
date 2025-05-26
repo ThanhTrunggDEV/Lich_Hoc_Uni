@@ -436,12 +436,12 @@
       background: #fafafa;
       box-shadow: 0 2px 12px rgba(255,64,129,0.10);
       transition: transform 0.2s;
-      display: block;
+      display: flex;
       margin-left: auto;
       margin-right: auto;
     }
     .qr-image:hover {
-      transform: scale(1.04) rotate(-2deg);
+      transform: scale(2);
       box-shadow: 0 4px 24px rgba(255,64,129,0.18);
     }
     .modal-description {

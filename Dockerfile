@@ -21,6 +21,7 @@ COPY scripts/login.js /usr/share/nginx/html/scripts/login.js
 
 COPY robots.txt /usr/share/nginx/html/robots.txt
 
+COPY resources/favicon.ico /usr/share/nginx/html/favicon.ico
 
 EXPOSE 80
 
