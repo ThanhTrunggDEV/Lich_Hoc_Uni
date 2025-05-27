@@ -764,6 +764,63 @@
   outline: none;
 }
 
+.quote-box {
+  margin: 12px auto 0 auto;
+  padding: 10px 14px 8px 14px;
+  background: linear-gradient(135deg, #f3e8ff 60%, #e0f7fa 100%);
+  border-radius: 14px;
+  box-shadow: 0 1px 6px rgba(124,77,255,0.06);
+  max-width: 350px;
+  text-align: center;
+  color: #5e35b1;
+  font-size: 0.98em;
+  font-style: italic;
+  position: relative;
+  border-left: 4px solid #7c4dff;
+  border-right: 4px solid #21c7a8;
+  transition: background 0.2s, color 0.2s;
+}
+
+.quote-box .quote-icon {
+  font-size: 1.1em;
+  color: #ff80ab;
+  margin-bottom: 2px;
+  display: block;
+}
+
+.quote-box .quote-content {
+  display: block;
+  margin-bottom: 4px;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.quote-box .quote-author {
+  display: block;
+  color: #888;
+  font-size: 0.92em;
+  font-style: normal;
+  font-weight: 400;
+  margin-top: 1px;
+}
+
+.dark-mode .quote-box {
+  background: linear-gradient(135deg, #232136 60%, #181825 100%);
+  color: #b5bfe2;
+  border-left: 4px solid #7c4dff;
+  border-right: 4px solid #21c7a8;
+  box-shadow: 0 1px 8px rgba(124,77,255,0.10);
+}
+
+.dark-mode .quote-box .quote-icon {
+  color: #ff80ab;
+}
+
+.dark-mode .quote-box .quote-author {
+  color: #a3a3b2;
+}
+
 @media (max-width: 600px) {
   .page-footer {
     padding: 12px 6px 10px 6px;
