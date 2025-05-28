@@ -13,6 +13,18 @@ document.addEventListener('DOMContentLoaded', function() {
     passwordToggle.classList.toggle('fa-eye-slash', isPwd);
   });
 
+  function skipLogin(){
+    const studentID = localStorage.getItem("studentID");
+    const password = localStorage.getItem("password");
+    const studentName = localStorage.getItem("studentName");
+    
+    if(studentID != null && password != null && studentName != null) {
+      window.location.href = 'lichhoc.html';
+    }
+
+  }
+
+  skipLogin();
   loginForm.addEventListener('submit', function(event) {
     event.preventDefault();
     const studentId = studentIdInput.value;
@@ -26,9 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
     errorMessage.style.display = 'none';
     loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
     loginButton.disabled = true;
-
-
-
     setTimeout(async function() {
       try {
         const response = await fetch(`https://api.nguyenthanhtrung.online/login`, {
