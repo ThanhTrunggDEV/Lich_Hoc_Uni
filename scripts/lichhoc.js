@@ -469,4 +469,14 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(updateOnlineUsers, 10000);
   setInterval(sendHeartBeat, 60000);
 
+  const logoutButton = document.getElementById('logout-button');
+  if (logoutButton) {
+    logoutButton.addEventListener('click', function() {
+      localStorage.removeItem('studentID');
+      localStorage.removeItem('password');
+      localStorage.removeItem('studentName');
+      window.location.href = '/login.html';
+    });
+  }
+
 });
