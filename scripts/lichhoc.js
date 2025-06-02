@@ -273,7 +273,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (loadingElement && scheduleContainer) {
           loadingElement.style.display = 'flex';
           scheduleContainer.innerHTML = '';
-          renderFullTimetable();
+          if (isShowingExamSchedule) {
+            renderExamSchedule();
+          } else {
+            renderFullTimetable();
+          }
         }
       });
     }
@@ -321,7 +325,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  let isShowingExamSchedule = false;
+
   function createExamCard(examItem) {
     const examDiv = document.createElement('div');
     examDiv.className = 'schedule-item exam';
@@ -394,38 +398,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  let isShowingExamSchedule = false;
 
-  const toggleButton = document.getElementById('toggle-view-button');
-  if (toggleButton) toggleButton.addEventListener('click', toggleScheduleView);
-  function toggleScheduleView() {
-    const headerTitle = document.querySelector('.header h1');
-    const headerSubtitle = document.querySelector('.header-subtitle');
-    const studentName = localStorage.getItem('studentName');
-    if (isShowingExamSchedule) {
-      isShowingExamSchedule = false;
-      if (toggleButton) {
-        toggleButton.innerHTML = '<i class="fas fa-graduation-cap"></i>';
-        toggleButton.title = 'Xem lịch thi';
+  const tabTimetable = document.getElementById('tab-timetable');
+  const tabExam = document.getElementById('tab-exam');
+
+  function activateTab(tab) {
+    tabTimetable.classList.remove('active');
+    tabExam.classList.remove('active');
+    tab.classList.add('active');
+  }
+
+  if (tabTimetable && tabExam) {
+    tabTimetable.addEventListener('click', function() {
+      if (isShowingExamSchedule) {
+        isShowingExamSchedule = false;
+        activateTab(tabTimetable);
+        const headerTitle = document.querySelector('.header h1');
+        const headerSubtitle = document.querySelector('.header-subtitle');
+        const studentName = localStorage.getItem('studentName');
+        headerTitle.textContent = 'Lịch Học Cá Nhân';
+        headerSubtitle.innerHTML = (studentName && studentName.length >= 6)
+          ? `Xin Chào <strong>${studentName}</strong> !!!<br> Ngày Hôm Nay Của Bạn Thế Nào?`
+          : 'Vui Lòng Đăng Nhập Lại';
+        const loadingElement = document.getElementById('loading');
+        const scheduleContainer = document.getElementById('schedule-container');
+        if (loadingElement && scheduleContainer) {
+          loadingElement.style.display = 'flex';
+          scheduleContainer.innerHTML = '';
+          renderFullTimetable();
+        }
       }
-      headerTitle.textContent = 'Lịch Học Cá Nhân';
-      headerSubtitle.innerHTML = (studentName && studentName.length >= 6)
-        ? `Xin Chào <strong>${studentName}</strong> !!!<br> Ngày Hôm Nay Của Bạn Thế Nào?`
-        : 'Vui Lòng Đăng Nhập Lại';
-      const loadingElement = document.getElementById('loading');
-      const scheduleContainer = document.getElementById('schedule-container');
-      if (loadingElement && scheduleContainer) {
-        loadingElement.style.display = 'flex';
-        scheduleContainer.innerHTML = '';
-        renderFullTimetable();
+    });
+    tabExam.addEventListener('click', function() {
+      if (!isShowingExamSchedule) {
+        isShowingExamSchedule = true;
+        activateTab(tabExam);
+        renderExamSchedule();
       }
-    } else {
-      isShowingExamSchedule = true;
-      if (toggleButton) {
-        toggleButton.innerHTML = '<i class="fas fa-calendar-alt"></i>';
-        toggleButton.title = 'Xem lịch học';
-      }
-      renderExamSchedule();
-    }
+    });
   }
 
    function sendHeartBeat(){
@@ -476,7 +487,8 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.removeItem('password');
       localStorage.removeItem('studentName');
       window.location.href = '/login.html';
+      
     });
   }
-
+  
 });

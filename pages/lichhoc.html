@@ -47,9 +47,6 @@
         <div class="header-icon" id="change-mode-button" title="Chuyển chế độ sáng/tối">
           <i class="fas fa-sun"></i>
         </div>
-        <button id="toggle-view-button" class="toggle-view-btn" title="Xem lịch thi">
-          <i class="fas fa-graduation-cap"></i>
-        </button>
         <div class="header-icon" id="refresh-button" title="Làm mới">
           <i class="fas fa-sync-alt"></i>
         </div>
@@ -61,6 +58,18 @@
         <i class="fas fa-heart"></i> Donate
       </button>
     </header>
+
+    <div class="tabs-container">
+      <div class="nav-tabs" id="schedule-tabs">
+        <button id="tab-timetable" class="nav-tab active" type="button" title="Lịch học">
+          <i class="fas fa-calendar-alt"></i> Lịch học
+        </button>
+        <button id="tab-exam" class="nav-tab" type="button" title="Lịch thi">
+          <i class="fas fa-graduation-cap"></i> Lịch thi
+        </button>
+      </div>
+    </div>
+
     <main>
       <div class="container">
         <div id="loading" class="loading" aria-live="polite">
