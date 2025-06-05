@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function transformTimetableData(data) {
     const schedule = {};
-    const dayMap = { '1': 'Chủ Nhật', '2': 'Thứ 2', '3': 'Thứ 3', '4': 'Thứ 4', '5': 'Thứ 5', '6': 'Thứ 6', '7': 'Thứ 7' };
+    const dayMap = { '8': 'Chủ Nhật', '2': 'Thứ 2', '3': 'Thứ 3', '4': 'Thứ 4', '5': 'Thứ 5', '6': 'Thứ 6', '7': 'Thứ 7' };
     function parsePeriodRange(periodStr) {
       if (periodStr.includes('-->')) {
         const [start, end] = periodStr.split('-->').map(p => parseInt(p.trim()));
@@ -336,6 +336,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       document.body.appendChild(newDiv);
     } else {
+
       changeModeButton.innerHTML = `
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" style="display:block" xmlns="http://www.w3.org/2000/svg">
           <circle cx="11" cy="11" r="5" fill="#FFD600"/>
