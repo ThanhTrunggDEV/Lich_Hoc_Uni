@@ -18,6 +18,7 @@ COPY css/shootingstars.css /usr/share/nginx/html/css/shootingstars.css
 
 COPY scripts/lichhoc.js /usr/share/nginx/html/scripts/lichhoc.js
 COPY scripts/login.js /usr/share/nginx/html/scripts/login.js
+COPY scripts/mainPage.js /usr/share/nginx/html/scripts/mainPage.js
 
 COPY robots.txt /usr/share/nginx/html/robots.txt
 
