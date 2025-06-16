@@ -1238,3 +1238,25 @@
         body.light-mode .feature-icon {
             color: #8b5cf6;
         }
+        /* Install Button */
+        .install-btn {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+        }
+        .install-btn:hover {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(99,102,241,0.15);
+        }

@@ -16,6 +16,11 @@
   <link rel="shortcut icon" href="/images and icons/16206597.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/login.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Lịch Học Sinh Viên">
+<link rel="apple-touch-icon" href="/icons/ios-icon.png">
+<meta name="theme-color" content="#000000">
 </head>
 <body>
   <div class="login-container">
@@ -65,11 +70,17 @@
     </div>
   </div>
   <script src="/scripts/login.js"></script>
+  <script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+}
+</script>
   <footer class="page-footer">
     <a href="about.html" style="color: #888; text-decoration: underline;">About Me</a> |
     <a href="privacy.html" style="color: #888; text-decoration: underline;">Chính sách bảo mật</a> |
     <a href="terms.html" style="color: #888; text-decoration: underline;">Điều khoản</a> |
     <a href="contact.html" style="color: #888; text-decoration: underline;">Liên hệ</a>
   </footer>
+
 </body>
 </html>

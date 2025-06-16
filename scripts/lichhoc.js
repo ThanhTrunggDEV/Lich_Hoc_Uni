@@ -517,7 +517,7 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.removeItem('studentID');
       localStorage.removeItem('password');
       localStorage.removeItem('studentName');
-      window.location.href = '/login.html';
+      window.location.href = 'login.html';
       
     });
   }

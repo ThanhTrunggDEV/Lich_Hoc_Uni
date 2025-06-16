@@ -21,6 +21,12 @@
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/mainPageStyle.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Lịch Học Sinh Viên">
+    <link rel="apple-touch-icon" href="/icons/ios-icon.png">
+
 </head>
 <body class="light-mode">
     <nav class="navbar" id="navbar">
@@ -36,6 +42,9 @@
             <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Chuyển đổi chế độ sáng/tối" title="Chuyển đổi chế độ sáng/tối">
                 <span class="icon icon-sun">☀️</span>
                 <span class="icon icon-moon">🌙</span>
+            </button>
+            <button class="install-btn" id="installAppBtn" style="margin-left:16px;" aria-label="Cài đặt ứng dụng" title="Thêm vào màn hình chính hoặc taskbar">
+                <span style="font-size:1.2em;">⬇️</span> Cài đặt ứng dụng
             </button>
         </div>
     </nav>
@@ -318,5 +327,44 @@
         </div>
     </footer>
 <script src="/scripts/mainPage.js"></script>
+<script>
+
+let deferredPrompt;
+const installBtn = document.getElementById('installAppBtn');
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'inline-flex';
+});
+installBtn && installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            installBtn.style.display = 'none';
+        }
+        deferredPrompt = null;
+    }
+});
+
+function isIos() {
+    return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+}
+function isInStandaloneMode() {
+    return ('standalone' in window.navigator) && window.navigator.standalone;
+}
+if (isIos() && !isInStandaloneMode()) {
+    installBtn.style.display = 'inline-flex';
+    installBtn.onclick = function() {
+        alert('Để thêm ứng dụng vào màn hình chính:\n1. Nhấn nút Chia sẻ (Share) trên Safari.\n2. Chọn "Thêm vào Màn hình chính" (Add to Home Screen).');
+    };
+}
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+}
+</script>
 </body>
 </html>
