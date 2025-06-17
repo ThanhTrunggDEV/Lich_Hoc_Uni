@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const studentName = data['data'];
         
 
-        if (studentName !== "Khách") {
+        if (studentName !== "Khách" && studentName != "Guest") {
           localStorage.setItem('studentName', studentName);
           localStorage.setItem('studentID', studentId);
           localStorage.setItem('password', password);

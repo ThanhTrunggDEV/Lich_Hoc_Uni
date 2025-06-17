@@ -18,10 +18,14 @@ COPY css/shootingstars.css /usr/share/nginx/html/css/shootingstars.css
 
 COPY scripts/lichhoc.js /usr/share/nginx/html/scripts/lichhoc.js
 COPY scripts/login.js /usr/share/nginx/html/scripts/login.js
+COPY scripts/mainPage.js /usr/share/nginx/html/scripts/mainPage.js
 
 COPY robots.txt /usr/share/nginx/html/robots.txt
 
 COPY resources/favicon.ico /usr/share/nginx/html/favicon.ico
+COPY sw.js                 /usr/share/nginx/html/sw.js
+COPY icons/                /usr/share/nginx/html/icons/
+COPY manifest.json         /usr/share/nginx/html/manifest.json
 
 EXPOSE 80
 
