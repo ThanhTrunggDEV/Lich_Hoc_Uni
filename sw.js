@@ -26,10 +26,6 @@ const STATIC_ASSETS = [
 ];
 
 
-const API_URLS = [
-  'https://api.nguyenthanhtrung.online/download',
-
-];
 
 
 self.addEventListener('install', (event) => {
@@ -57,37 +53,28 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-async function generatePostCacheKey(request) {
-  const body = await request.clone().text();
-  const encoder = new TextEncoder();
-  const data = encoder.encode(body);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-  return `${request.url}::${hashHex}`;
-}
-
-self.addEventListener("fetch", event => {
+self.addEventListener('fetch', (event) => {
   const req = event.request;
 
-  if (req.method === "POST" && req.url.includes("/download")) {
-    event.respondWith(
-      (async () => {
-        const cache = await caches.open(CACHE_NAME);
-        const cacheKey = await generatePostCacheKey(req);
+  if (req.method !== 'GET') return;
 
-        try {
-          const networkResponse = await fetch(req);
-          cache.put(cacheKey, networkResponse.clone());
-          return networkResponse;
-        } catch (err) {
-          const cached = await cache.match(cacheKey);
-          return cached || new Response("Mất mạng và chưa có cache dữ liệu!", {
-            status: 503,
-            statusText: "Offline"
-          });
-        }
-      })()
-    );
-  }
+  event.respondWith(
+    caches.match(req).then((cachedRes) => {
+      return (
+        cachedRes ||
+        fetch(req)
+          .then((networkRes) => {
+            return caches.open(CACHE_NAME).then((cache) => {
+              cache.put(req, networkRes.clone());
+              return networkRes;
+            });
+          })
+          .catch(() => {
+            if (req.headers.get('accept').includes('text/html')) {
+              return caches.match('/offline.html');
+            }
+          })
+      );
+    })
+  );
 });
