@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       if (!response.ok) throw new Error(`Status: ${response.status}, Message: ${await response.text()}`);
       const data = await response.json();
-    
+      
       localStorage.setItem('timetableData', JSON.stringify(data));
 
       loadingElement.style.display = 'none';
@@ -585,8 +585,8 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.removeItem('studentID');
       localStorage.removeItem('password');
       localStorage.removeItem('studentName');
+      localStorage.removeItem('timetableData');
       window.location.href = 'login.html';
-      
     });
   }
   

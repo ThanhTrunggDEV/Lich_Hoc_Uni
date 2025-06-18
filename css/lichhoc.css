@@ -605,7 +605,7 @@
 }
 
 .dark-mode .exam-date {
-  color: #ff7043;
+  color: #ffb199; 
 }
 
 .exam-time-detail {
@@ -618,11 +618,17 @@
 }
 
 .dark-mode .exam-time-detail {
-  color: #ff8a65;
+  color: #ffd180; 
 }
 
 .exam-details {
   padding: 16px;
+  background: none;
+}
+
+.dark-mode .exam-details {
+  background: none;
+  color: #e0def4; 
 }
 
 .exam-title {
