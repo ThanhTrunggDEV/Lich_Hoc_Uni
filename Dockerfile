@@ -16,9 +16,27 @@ COPY css/lichhoc.css /usr/share/nginx/html/css/lichhoc.css
 COPY css/login.css /usr/share/nginx/html/css/login.css
 COPY css/shootingstars.css /usr/share/nginx/html/css/shootingstars.css
 
-COPY scripts/lichhoc.js /usr/share/nginx/html/scripts/lichhoc.js
+COPY scripts/main.js /usr/share/nginx/html/scripts/main.js
 COPY scripts/login.js /usr/share/nginx/html/scripts/login.js
 COPY scripts/mainPage.js /usr/share/nginx/html/scripts/mainPage.js
+COPY scripts/api/exam.js /usr/share/nginx/html/scripts/api/exam.js
+COPY scripts/api/quote.js /usr/share/nginx/html/scripts/api/quote.js
+COPY scripts/api/timetable.js /usr/share/nginx/html/scripts/api/timetable.js
+COPY scripts/core/auth.js /usr/share/nginx/html/scripts/core/auth.js
+COPY scripts/core/heartbeat.js /usr/share/nginx/html/scripts/core/heartbeat.js
+COPY scripts/core/online.js /usr/share/nginx/html/scripts/core/online.js
+COPY scripts/ui/darkmode.js /usr/share/nginx/html/scripts/ui/darkmode.js
+COPY scripts/ui/donateModal.js /usr/share/nginx/html/scripts/ui/donateModal.js
+COPY scripts/ui/error.js /usr/share/nginx/html/scripts/ui/error.js
+COPY scripts/ui/greeting.js /usr/share/nginx/html/scripts/ui/greeting.js
+COPY scripts/ui/logout.js /usr/share/nginx/html/scripts/ui/logout.js
+COPY scripts/ui/refresh.js /usr/share/nginx/html/scripts/ui/refresh.js
+COPY scripts/ui/tabs.js /usr/share/nginx/html/scripts/ui/tabs.js
+COPY scripts/utils/card.js /usr/share/nginx/html/scripts/utils/card.js
+COPY scripts/utils/date.js /usr/share/nginx/html/scripts/utils/date.js
+COPY scripts/utils/period.js /usr/share/nginx/html/scripts/utils/period.js
+COPY scripts/utils/transform.js /usr/share/nginx/html/scripts/utils/transform.js
+
 
 COPY robots.txt /usr/share/nginx/html/robots.txt
 
