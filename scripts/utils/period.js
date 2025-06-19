@@ -25,7 +25,7 @@ export const periodTimes_TUMP = {
   
   7: { start: '13:00', end: '13:50' },
   8: { start: '13:55', end: '14:45' },
-  9: { start: '15:55', end: '16:45' },
+  9: { start: '14:55', end: '16:45' },
   10: { start: '15:50', end: '16:40' },
   11: { start: '16:50', end: '17:00' },
 

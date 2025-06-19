@@ -47,7 +47,7 @@ function animateOnScroll() {
             setTheme(isLight);
         });
 
-        // Xử lý cài đặt PWA
+
         let deferredPrompt;
         const installBtn = document.getElementById('installAppBtn');
         window.addEventListener('beforeinstallprompt', (e) => {
@@ -65,7 +65,7 @@ function animateOnScroll() {
                 deferredPrompt = null;
             }
         });
-        // iOS: Hướng dẫn thêm vào màn hình chính
+
         function isIos() {
             return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
         }

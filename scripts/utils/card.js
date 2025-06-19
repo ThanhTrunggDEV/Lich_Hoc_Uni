@@ -13,7 +13,9 @@ export function createClassCard(classItem) {
   timeText.innerHTML = `<i class="far fa-clock"></i> ${classItem.startTime} - ${classItem.endTime}`;
   const classStatus = document.createElement('div');
   classStatus.className = 'class-status';
-  classStatus.innerHTML = (classItem.endTime < '13:00')
+  
+  const startHour = parseInt(classItem.startTime.split(':')[0], 10);
+  classStatus.innerHTML = (startHour < 13)
     ? 'Lịch sáng <i class="fas fa-sun"></i>' : 'Lịch chiều <i class="fas fa-cloud-sun"></i>';
   timeDiv.append(timeText, classStatus);
   classDiv.appendChild(timeDiv);
