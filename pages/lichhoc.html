@@ -109,8 +109,18 @@
       <div class="modal-close" id="config-modal-close" title="Đóng"><i class="fas fa-times"></i></div>
       <h2 class="modal-title" id="config-modal-title"><i class="fas fa-cog"></i> Cài Đặt </h2>
       <div id="config-modal-body">
-
-        <p>Chức năng cấu hình sẽ cập nhật sau.</p>
+        
+        <form id="config-radio-form" style="margin-bottom:16px;text-align:left;">
+          <label style="display:block;margin-bottom:8px;font-weight:500;">Tự động tải lịch học mới nhất:</label>
+          <label style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <input type="radio" name="displayMode" value="auto" checked>
+            Bật
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <input type="radio" name="displayMode" value="light">
+            Tắt
+          </label>
+        </form>
       </div>
     </div>
   </div>
