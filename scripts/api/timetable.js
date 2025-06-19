@@ -36,7 +36,24 @@ export async function renderFullTimetable() {
     const schedule = transformTimetableData(currentAndFutureWeeks);
     renderSchedule(schedule, scheduleContainer, today);
   } catch (error) {
-
+    const cached = localStorage.getItem('timetableData');
+    if (cached) {
+      loadingElement.style.display = 'none';
+      try {
+        const data = JSON.parse(cached);
+        const currentAndFutureWeeks = {};
+        Object.keys(data).forEach(week => {
+          if (!isWeekInPast(week)) currentAndFutureWeeks[week] = data[week];
+        });
+        if (Object.keys(currentAndFutureWeeks).length === 0)
+          return showError("Không có lịch học cho thời gian sắp tới (offline)");
+        const schedule = transformTimetableData(currentAndFutureWeeks);
+        renderSchedule(schedule, scheduleContainer, today);
+        return;
+      } catch (e) {
+        
+      }
+    }
     showError("Không thể tải lịch học", error.message);
   }
 }
