@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loginButton.disabled = true;
     setTimeout(async function() {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/login`, {
+        const response = await fetch(`https://api.nguyenthanhtrung.online/login`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         const data = await response.json();
         const studentName = data['data'];
-        alert(studentName)
 
         if (studentName !== "Khách" && studentName != "Guest" && studentName != "") {
           localStorage.setItem('studentName', studentName);
