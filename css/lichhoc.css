@@ -1032,3 +1032,24 @@
   transform: scale(0.96);
 }
 
+.dark-mode #config-modal .modal-content {
+  background: #232136 !important;
+  color: #e0def4;
+  border: 1.5px solid #7c4dff;
+}
+
+.dark-mode #config-modal label {
+  color: #e0def4;
+}
+
+.dark-mode #config-modal input[type="radio"] {
+  accent-color: #7c4dff;
+  background: #393552;
+  border-color: #7c4dff;
+}
+
+#config-modal input[type="radio"] {
+  accent-color: #7c4dff;
+  margin-right: 6px;
+}
+
