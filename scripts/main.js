@@ -1,7 +1,7 @@
 import { checkAuth } from './core/auth.js';
-import { sendHeartBeat } from './core/heartbeat.js';
-import { updateOnlineUsers } from './core/online.js';
+import { sendHeartBeat } from './api/heartbeat.js';
 
+import { updateOnlineUsers } from './api/online.js';
 import { fetchAndShowQuote } from './api/quote.js';
 import { renderFullTimetable } from './api/timetable.js';
 

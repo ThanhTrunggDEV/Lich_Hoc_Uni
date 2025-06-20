@@ -14,9 +14,32 @@ const STATIC_ASSETS = [
   '/css/mainPages.css',
   '/css/shootingstars.css',
 
-  '/scripts/lichhoc.js',
-  '/scripts/login.js',
+  '/scripts/api/exam.js',
+  '/scripts/api/online.js',
+  '/scripts/api/quote.js',
+  '/scripts/api/timetable.js',
+  '/scripts/api/heartbeat.js',
+
+  '/scripts/core/auth.js',
+  
+
+  '/scripts/ui/config.js',
+  '/scripts/ui/darkmode.js',
+  '/scripts/ui/donateModal.js',
+  '/scripts/ui/error.js',
+  '/scripts/ui/greeting.js',
+  '/scripts/ui/logout.js',
+  '/scripts/ui/refresh.js',
+  '/scripts/ui/tabs.js',
+
+  '/scripts/utils/card.js',
+  '/scripts/utils/date.js',
+  '/scripts/utils/period.js',
+  '/scripts/utils/transform.js',
+
   '/scripts/mainPage.js',
+  '/scripts/main.js',
+  '/scripts/login.js',
 
   '/icons/icon1.png',
   '/icons/icon2.png',
