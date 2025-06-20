@@ -11,7 +11,7 @@ const STATIC_ASSETS = [
 
   '/css/lichhoc.css',
   '/css/login.css',
-  '/css/mainPages.css',
+  '/css/mainPageStyle.css',
   '/css/shootingstars.css',
 
   '/scripts/api/exam.js',
@@ -21,7 +21,6 @@ const STATIC_ASSETS = [
   '/scripts/api/heartbeat.js',
 
   '/scripts/core/auth.js',
-  
 
   '/scripts/ui/config.js',
   '/scripts/ui/darkmode.js',
@@ -53,8 +52,14 @@ const STATIC_ASSETS = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
+    caches.open(CACHE_NAME).then(async (cache) => {
+      for(const url of STATIC_ASSETS){
+        try{
+          await cache.add(url);
+        }catch(err){
+          console.warn(`Lỗi khi cache file: ${url}`);
+        }
+      }
     })
   );
   self.skipWaiting();
