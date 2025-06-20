@@ -101,6 +101,10 @@ export function initConfigButton() {
   if(!autoLichhocConfig) localStorage.setItem('autolichhoc', 'on');
   if(!saobangConfig) localStorage.setItem('saobang', 'on');
   
+
+  autoLichhocConfig = localStorage.getItem('autolichhoc');
+  saobangConfig = localStorage.getItem('saobang');
+
   var autoLoad = document.querySelector(`input[name="isAuto"][value=${autoLichhocConfig}]`);
   var saobang = document.querySelector(`input[name="saobang"][value=${saobangConfig}]`);
   autoLoad.checked = true;
