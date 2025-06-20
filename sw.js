@@ -15,10 +15,10 @@ const STATIC_ASSETS = [
   '/css/shootingstars.css',
 
   '/scripts/api/exam.js',
-  //'/scripts/api/online.js',
+  '/scripts/api/online.js',
   '/scripts/api/quote.js',
   '/scripts/api/timetable.js',
- // '/scripts/api/heartbeat.js',
+  '/scripts/api/heartbeat.js',
 
   '/scripts/core/auth.js',
 
