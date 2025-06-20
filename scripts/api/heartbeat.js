@@ -5,6 +5,7 @@ export function sendHeartBeat() {
     localStorage.setItem("client_id", clientId);
   }
   clientId = localStorage.getItem("client_id");
+  
   fetch('https://api.nguyenthanhtrung.online/heartbeat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

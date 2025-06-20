@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lichhoc-v1';
+const CACHE_NAME = 'lichhoc-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -15,10 +15,10 @@ const STATIC_ASSETS = [
   '/css/shootingstars.css',
 
   '/scripts/api/exam.js',
-  '/scripts/api/online.js',
+  //'/scripts/api/online.js',
   '/scripts/api/quote.js',
   '/scripts/api/timetable.js',
-  '/scripts/api/heartbeat.js',
+ // '/scripts/api/heartbeat.js',
 
   '/scripts/core/auth.js',
 
@@ -83,8 +83,12 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const req = event.request;
-
-  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.pathname === '/online-users') {
+    event.respondWith(fetch(req));
+    return;
+  }
+  if (req.method !== 'GET' || (url.protocol !== 'http:' && url.protocol !== 'https:')) return;
 
   event.respondWith(
     caches.match(req).then((cachedRes) => {
