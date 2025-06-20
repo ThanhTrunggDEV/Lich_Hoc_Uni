@@ -24,6 +24,7 @@ COPY scripts/api/exam.js /usr/share/nginx/html/scripts/api/exam.js
 COPY scripts/api/quote.js /usr/share/nginx/html/scripts/api/quote.js
 COPY scripts/api/timetable.js /usr/share/nginx/html/scripts/api/timetable.js
 COPY scripts/api/online.js /usr/share/nginx/html/scripts/api/online.js
+COPY scripts/api/heartbeat.js /usr/share/nginx/html/scripts/api/heartbeat.js
 
 COPY scripts/core/auth.js /usr/share/nginx/html/scripts/core/auth.js
 
