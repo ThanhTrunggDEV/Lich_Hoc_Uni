@@ -12,6 +12,7 @@ import { setupTabs } from './ui/tabs.js';
 import { setupLogout } from './ui/logout.js';
 import { setupRefresh } from './ui/refresh.js';
 import { initConfigButton } from './ui/config.js';
+import { initSaveConfigButton } from './ui/config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   if (!checkAuth()) return;
@@ -28,4 +29,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateOnlineUsers, 10000);
   setInterval(sendHeartBeat, 60000);
   initConfigButton();
+  initSaveConfigButton();
 });
