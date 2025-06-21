@@ -95,8 +95,8 @@ export function initConfigButton() {
     if (e.target === this) this.classList.remove('active');
   });
   //load các giá trị cho bảng config từ local storage nếu chưa có thì khởi tạo tất cả là on
-  var autoLichhocConfig = localStorage.getItem('autolichhoc');
-  var saobangConfig = localStorage.getItem('saobang');
+  let autoLichhocConfig = localStorage.getItem('autolichhoc');
+  let saobangConfig = localStorage.getItem('saobang');
 
   if(!autoLichhocConfig) localStorage.setItem('autolichhoc', 'on');
   if(!saobangConfig) localStorage.setItem('saobang', 'on');
@@ -105,8 +105,8 @@ export function initConfigButton() {
   autoLichhocConfig = localStorage.getItem('autolichhoc');
   saobangConfig = localStorage.getItem('saobang');
 
-  var autoLoad = document.querySelector(`input[name="isAuto"][value=${autoLichhocConfig}]`);
-  var saobang = document.querySelector(`input[name="saobang"][value=${saobangConfig}]`);
+  let autoLoad = document.querySelector(`input[name="isAuto"][value=${autoLichhocConfig}]`);
+  let saobang = document.querySelector(`input[name="saobang"][value=${saobangConfig}]`);
   autoLoad.checked = true;
   saobang.checked = true;
 }
@@ -114,8 +114,8 @@ export function initConfigButton() {
 export function initSaveConfigButton(){
   const btn = document.getElementById('config-save-btn');
   btn.addEventListener('click',() => {
-   var isAutoSelected = document.querySelector('input[name="isAuto"]:checked');
-   var saobangSelected = document.querySelector('input[name="saobang"]:checked');
+   let isAutoSelected = document.querySelector('input[name="isAuto"]:checked');
+   let saobangSelected = document.querySelector('input[name="saobang"]:checked');
    if(isAutoSelected) localStorage.setItem('autolichhoc', isAutoSelected.value);
    if(saobangSelected) localStorage.setItem('saobang', saobangSelected.value);
    alert("Đã lưu cài đặt");

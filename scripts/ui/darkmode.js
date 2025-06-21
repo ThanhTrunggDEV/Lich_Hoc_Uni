@@ -1,4 +1,5 @@
-export function initDarkMode(changeModeButton) {
+export function initDarkMode() {
+  const changeModeButton = document.getElementById('change-mode-button');
   let isDarkMode = false;
   (function autoDarkModeByTime() {
     const now = new Date();
@@ -7,7 +8,7 @@ export function initDarkMode(changeModeButton) {
       document.body.classList.add('dark-mode');
       isDarkMode = true;
       changeModeButton.innerHTML = '<i class="fas fa-moon"></i>';
-      var isSaoBang = localStorage.getItem('saobang');
+      let isSaoBang = localStorage.getItem('saobang');
       if(isSaoBang && isSaoBang === 'on')
          document.body.appendChild(addShootingStars());
     } else {
@@ -35,7 +36,7 @@ export function initDarkMode(changeModeButton) {
     if (isDarkMode) {
       changeModeButton.innerHTML = '<i class="fas fa-moon"></i>';
       
-      var isSaoBang = localStorage.getItem('saobang');
+      let isSaoBang = localStorage.getItem('saobang');
       if(isSaoBang && isSaoBang === 'on') document.body.appendChild(addShootingStars());
     } else {
       changeModeButton.innerHTML = `

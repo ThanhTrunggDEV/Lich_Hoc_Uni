@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchAndShowQuote();
   renderFullTimetable();
   initDonateModal();
-  initDarkMode(document.getElementById('change-mode-button'));
+  initDarkMode();
   setupTabs();
   setupLogout();
   setupRefresh(false);
