@@ -97,16 +97,21 @@ export function initConfigButton() {
   //load các giá trị cho bảng config từ local storage nếu chưa có thì khởi tạo tất cả là on
   let autoLichhocConfig = localStorage.getItem('autolichhoc');
   let saobangConfig = localStorage.getItem('saobang');
+  let autoLichthiConfig = localStorage.getItem('autolichthi');
 
   if(!autoLichhocConfig) localStorage.setItem('autolichhoc', 'on');
   if(!saobangConfig) localStorage.setItem('saobang', 'on');
-  
+  if(!autoLichthiConfig) localStorage.setItem('autolichthi', 'on');
 
   autoLichhocConfig = localStorage.getItem('autolichhoc');
   saobangConfig = localStorage.getItem('saobang');
+  autoLichthiConfig = localStorage.getItem('autolichthi');
 
   let autoLoad = document.querySelector(`input[name="isAuto"][value=${autoLichhocConfig}]`);
   let saobang = document.querySelector(`input[name="saobang"][value=${saobangConfig}]`);
+  let autoLoadLichthi = document.querySelector(`input[name="isAutoLichThi"][value=${autoLichthiConfig}]`);
+
+  autoLoadLichthi.checked = true;
   autoLoad.checked = true;
   saobang.checked = true;
 }
@@ -116,8 +121,11 @@ export function initSaveConfigButton(){
   btn.addEventListener('click',() => {
    let isAutoSelected = document.querySelector('input[name="isAuto"]:checked');
    let saobangSelected = document.querySelector('input[name="saobang"]:checked');
+   let isAutoLichThiSelected = document.querySelector('input[name="isAutoLichThi"]:checked');
+
    if(isAutoSelected) localStorage.setItem('autolichhoc', isAutoSelected.value);
    if(saobangSelected) localStorage.setItem('saobang', saobangSelected.value);
+   if(isAutoLichThiSelected) localStorage.setItem('autolichthi', isAutoLichThiSelected.value);
    alert("Đã lưu cài đặt");
   });
 }

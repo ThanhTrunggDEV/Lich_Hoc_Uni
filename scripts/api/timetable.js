@@ -58,6 +58,32 @@ export async function renderFullTimetable() {
   }
 }
 
+export function renderTimeTableFromCache(){
+  const loadingElement = document.getElementById('loading');
+  const scheduleContainer = document.getElementById('schedule-container');
+  const today = new Date();
+  const cached = localStorage.getItem('timetableData');
+  loadingElement.style.display = 'none';
+    if (cached) {
+      try {
+        const data = JSON.parse(cached);
+        const currentAndFutureWeeks = {};
+        Object.keys(data).forEach(week => {
+          if (!isWeekInPast(week)) currentAndFutureWeeks[week] = data[week];
+        });
+        if (Object.keys(currentAndFutureWeeks).length === 0)
+          return showError("Không có lịch học cho thời gian sắp tới (offline)");
+        const schedule = transformTimetableData(currentAndFutureWeeks);
+        renderSchedule(schedule, scheduleContainer, today);
+        return;
+      } catch (e) {
+        showError("Không thể tải lịch học", e.message);
+      }
+    }
+    showError("Không có lịch học offline!!! Vui lòng tải lại lịch ");
+  }
+
+
   function renderSchedule(schedule, scheduleContainer, today) {
   const days = ['Chủ Nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
   const sortedWeeks = Object.keys(schedule).sort((a, b) => {

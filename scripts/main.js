@@ -3,7 +3,7 @@ import { sendHeartBeat } from './api/heartbeat.js';
 
 import { updateOnlineUsers } from './api/online.js';
 import { fetchAndShowQuote } from './api/quote.js';
-import { renderFullTimetable } from './api/timetable.js';
+import { renderFullTimetable, renderTimeTableFromCache } from './api/timetable.js';
 
 import { showGreeting } from './ui/greeting.js';
 import { initDarkMode } from './ui/darkmode.js';
@@ -18,7 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!checkAuth()) return;
   showGreeting();
   fetchAndShowQuote();
-  renderFullTimetable();
+  initConfigButton();
+  initSaveConfigButton();
+  const autoLoad = localStorage.getItem('autolichhoc');
+  if(autoLoad && autoLoad == 'off')
+    renderTimeTableFromCache();
+  else
+    renderFullTimetable();
+  
   initDonateModal();
   initDarkMode();
   setupTabs();
@@ -28,6 +35,5 @@ document.addEventListener('DOMContentLoaded', () => {
   updateOnlineUsers();
   setInterval(updateOnlineUsers, 10000);
   setInterval(sendHeartBeat, 60000);
-  initConfigButton();
-  initSaveConfigButton();
+  
 });

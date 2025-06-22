@@ -1,5 +1,5 @@
-import { renderFullTimetable } from '../api/timetable.js';
-import { renderExamSchedule } from '../api/exam.js';
+import { renderFullTimetable, renderTimeTableFromCache } from '../api/timetable.js';
+import { renderExamSchedule, renderExamScheduleFromCache } from '../api/exam.js';
 
 export let isShowingExamSchedule = false;
 
@@ -30,7 +30,11 @@ export function setupTabs() {
         if (loadingElement && scheduleContainer) {
           loadingElement.style.display = 'flex';
           scheduleContainer.innerHTML = '';
-          renderFullTimetable();
+          const autoLoad = localStorage.getItem('autolichhoc');
+          if(autoLoad && autoLoad == 'off')
+            renderTimeTableFromCache();
+          else
+           renderFullTimetable();
         }
       }
     });
@@ -39,7 +43,11 @@ export function setupTabs() {
       if (!isShowingExamSchedule) {
         isShowingExamSchedule = true;
         activateTab(tabExam);
-        renderExamSchedule();
+        const autoLoadLichthi = localStorage.getItem('autolichthi');
+        if(autoLoadLichthi && autoLoadLichthi == 'off')
+          renderExamScheduleFromCache();
+        else
+          renderExamSchedule();
       }
     });
   }

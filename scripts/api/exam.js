@@ -87,6 +87,51 @@ export async function renderExamSchedule() {
   }
 }
 
+
+export function renderExamScheduleFromCache(){
+    const scheduleContainer = document.getElementById('schedule-container');
+    const loadingElement = document.getElementById('loading');
+    const headerTitle = document.querySelector('.header h1');
+    if (!scheduleContainer || !loadingElement) return;
+
+    headerTitle.textContent = 'Lịch Thi Cá Nhân';
+    scheduleContainer.innerHTML = '';
+    loadingElement.style.display = 'none';
+    const cached = localStorage.getItem('examScheduleCache');
+    if (cached) {
+      try {
+        const examData = JSON.parse(cached);
+        if (!examData || examData.length === 0) {
+          scheduleContainer.appendChild(createNoExamCard());
+          return;
+        }
+        const sortedExams = examData.slice().sort((a, b) => {
+          const [da, ma, ya] = a.ngay_thi.split('/').map(Number);
+          const [db, mb, yb] = b.ngay_thi.split('/').map(Number);
+          return new Date(ya, ma - 1, da) - new Date(yb, mb - 1, db);
+        });
+        const examHeader = document.createElement('div');
+        examHeader.className = 'week-header exam-header';
+        examHeader.innerHTML = `<i class="fas fa-graduation-cap"></i> Lịch Thi (Offline)`;
+        scheduleContainer.appendChild(examHeader);
+        const today = new Date();
+        sortedExams.forEach(exam => {
+          const [day, month, year] = exam.ngay_thi.split('/');
+          if(new Date(`${year}-${month}-${day}`) < today) return;
+          const examContainer = document.createElement('div');
+          examContainer.className = 'exam-container';
+          examContainer.appendChild(createExamCard(exam));
+          scheduleContainer.appendChild(examContainer);
+        });
+        return;
+      } catch (e) {
+        showError("Không thể tải lịch thi offline", e.message);
+      }
+    }
+    showError("Không thể tải lịch thi offline vui lòng tải lịch thi mới nhất");
+  }
+
+
 function createExamCard(examItem) {
   const examDiv = document.createElement('div');
   examDiv.className = 'schedule-item exam';
