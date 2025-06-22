@@ -38,6 +38,10 @@ export function parsePeriodRange(periodStr) {
     const [start, end] = periodStr.split('-->').map(p => parseInt(p.trim()));
     return { firstPeriod: start, lastPeriod: end };
   }
+  if (periodStr.includes('-')) {
+    const [start, end] = periodStr.split('-').map(p => parseInt(p.trim()));
+    return { firstPeriod: start, lastPeriod: end };
+  }
   if (periodStr.includes(',')) {
     const parts = periodStr.split(',').map(p => parseInt(p.trim()));
     return { firstPeriod: parts[0], lastPeriod: parts[parts.length - 1] };
