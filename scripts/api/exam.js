@@ -21,6 +21,8 @@ export async function renderExamSchedule() {
 
     if (!response.ok) throw new Error(`Status: ${response.status}, Message: ${await response.text()}`);
     const examData = await response.json();
+    
+    localStorage.setItem('examScheduleCache', JSON.stringify(examData));
     loadingElement.style.display = 'none';
 
     if (!examData || examData.length === 0) {
@@ -38,8 +40,10 @@ export async function renderExamSchedule() {
     examHeader.className = 'week-header exam-header';
     examHeader.innerHTML = `<i class="fas fa-graduation-cap"></i> Lịch Thi`;
     scheduleContainer.appendChild(examHeader);
-
+    const today = new Date();
     sortedExams.forEach(exam => {
+      const [day, month, year] = exam.ngay_thi.split('/');
+      if(new Date(`${year}-${month}-${day}`) < today) return;
       const examContainer = document.createElement('div');
       examContainer.className = 'exam-container';
       examContainer.appendChild(createExamCard(exam));
@@ -48,6 +52,37 @@ export async function renderExamSchedule() {
 
   } catch (error) {
     loadingElement.style.display = 'none';
+    const cached = localStorage.getItem('examScheduleCache');
+    if (cached) {
+      try {
+        const examData = JSON.parse(cached);
+        if (!examData || examData.length === 0) {
+          scheduleContainer.appendChild(createNoExamCard());
+          return;
+        }
+        const sortedExams = examData.slice().sort((a, b) => {
+          const [da, ma, ya] = a.ngay_thi.split('/').map(Number);
+          const [db, mb, yb] = b.ngay_thi.split('/').map(Number);
+          return new Date(ya, ma - 1, da) - new Date(yb, mb - 1, db);
+        });
+        const examHeader = document.createElement('div');
+        examHeader.className = 'week-header exam-header';
+        examHeader.innerHTML = `<i class="fas fa-graduation-cap"></i> Lịch Thi (Offline)`;
+        scheduleContainer.appendChild(examHeader);
+        const today = new Date();
+        sortedExams.forEach(exam => {
+          const [day, month, year] = exam.ngay_thi.split('/');
+          if(new Date(`${year}-${month}-${day}`) < today) return;
+          const examContainer = document.createElement('div');
+          examContainer.className = 'exam-container';
+          examContainer.appendChild(createExamCard(exam));
+          scheduleContainer.appendChild(examContainer);
+        });
+        return;
+      } catch (e) {
+        
+      }
+    }
     showError("Không thể tải lịch thi", error.message);
   }
 }
