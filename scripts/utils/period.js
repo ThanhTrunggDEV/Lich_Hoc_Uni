@@ -25,12 +25,27 @@ export const periodTimes_TUMP = {
   
   7: { start: '13:00', end: '13:50' },
   8: { start: '13:55', end: '14:45' },
-  9: { start: '14:55', end: '16:45' },
+  9: { start: '14:55', end: '15:45' },
   10: { start: '15:50', end: '16:40' },
   11: { start: '16:50', end: '17:00' },
 
   13: { start: '18:00', end: '18:50' },
   14: { start: '18:55', end: '19:45' }
+}
+export const periodTimes_TNUS = {
+  1: { start: '7:00', end: '7:50' },
+  2: { start: '7:55', end: '8:45' },
+  3: { start: '8:50', end: '9:40' },
+  4: { start: '9:50', end: '10:40' },
+  5: { start: '10:45', end: '11:35' },
+  6: { start: '11:40', end: '12:30'},
+
+  7: { start: '13:00', end: '13:50' },
+  8: { start: '13:55', end: '14:45' },
+  9: { start: '14:50', end: '15:40' },
+  10: { start: '15:50', end: '16:40' },
+  11: { start: '16:45', end: '17:35' },
+  12: { start: '17:40', end: '18:30' }
 }
 
 export function parsePeriodRange(periodStr) {

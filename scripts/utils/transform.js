@@ -1,4 +1,4 @@
-import { parsePeriodRange, periodTimes_ICTU, periodTimes_TUMP } from './period.js';
+import { parsePeriodRange, periodTimes_ICTU, periodTimes_TUMP, periodTimes_TNUS } from './period.js';
 
 export function transformTimetableData(data) {
   const schedule = {};
@@ -7,6 +7,9 @@ export function transformTimetableData(data) {
   let periodTimes = periodTimes_ICTU;
   if (studentID.startsWith('DTY')){
     periodTimes = periodTimes_TUMP;
+  }
+  if(studentID.startsWith('DTZ')){
+    periodTimes = periodTimes_TNUS;
   }
   
   Object.keys(data).forEach(week => {
