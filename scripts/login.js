@@ -57,11 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
           localStorage.setItem('password', password);
           window.location.href = 'lichhoc.html';
         } else {
-          throw new Error('Đăng nhập thất bại vui lòng kiểm tra lại');
+          throw new Error('Đăng nhập thất bại vui lòng kiểm tra lại tài khoản mật khẩu, hoặc là website đăng ký tín chỉ của trường bạn đang gặp sự cố');
         }
       } catch (error) {
         errorMessage.style.display = 'flex';
-        errorMessage.querySelector('span').textContent = error.message || 'Đăng nhập thất bại vui lòng kiểm tra lại';
+        errorMessage.querySelector('span').textContent = error.message || 'Đăng nhập thất bại vui lòng kiểm tra lại tài khoản mật khẩu, hoặc là website đăng ký tín chỉ của trường bạn đang gặp sự cố';
         loginButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Đăng Nhập';
         loginButton.disabled = false;
       }
