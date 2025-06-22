@@ -320,6 +320,7 @@
       box-shadow: 0 6px 12px rgba(0,0,0,0.1);
     }
     
+    
     .schedule-item.free {
       background: linear-gradient(135deg, #FF9800, #F57C00);
       color: white;
@@ -854,23 +855,46 @@
   line-height: 1.7;
 }
 
-.page-footer a {
-  color: #7c4dff;
-  text-decoration: underline;
-  margin: 0 6px;
-  transition: color 0.2s;
-  font-weight: 500;
-  border-radius: 6px;
-  padding: 2px 6px;
-  display: inline-block;
-}
+.footer {
+            background: #0a0a0a;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-.page-footer a:hover, .page-footer a:focus {
-  color: #ff4081;
-  background: rgba(124,77,255,0.08);
-  text-decoration: none;
-  outline: none;
-}
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #a1a1aa;
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #8b5cf6;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #71717a;
+        }
 
 .quote-box {
   margin: 12px auto 0 auto;
@@ -1000,16 +1024,72 @@
   color: #fff;
 }
 
-@media (max-width: 600px) {
-  .page-footer {
-    padding: 12px 6px 10px 6px;
-    font-size: 0.97em;
-    max-width: 98vw;
-    border-radius: 12px;
-  }
-  .page-footer a {
-    margin: 0 2px;
-    padding: 2px 3px;
-    font-size: 0.97em;
-  }
+#floating-config-btn {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1000;
+  background: linear-gradient(135deg, #03dac6, #6200ee);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  outline: none;
+}
+
+#floating-config-btn:hover, #floating-config-btn:focus {
+  background: linear-gradient(135deg, #21c7a8, #7c4dff);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(33,199,168,0.15);
+  outline: none;
+  transform: scale(1.08) rotate(-10deg);
+}
+#floating-config-btn:active {
+  transform: scale(0.96);
+}
+
+.dark-mode #config-modal .modal-content {
+  background: #232136 !important;
+  color: #e0def4;
+  border: 1.5px solid #7c4dff;
+}
+
+.dark-mode #config-modal label {
+  color: #e0def4;
+}
+
+.dark-mode #config-modal input[type="radio"] {
+  accent-color: #7c4dff;
+  background: #393552;
+  border-color: #7c4dff;
+}
+
+#config-modal input[type="radio"] {
+  accent-color: #7c4dff;
+  margin-right: 6px;
+}
+
+#config-save-btn{
+   margin-top:18px;
+   padding:10px 28px;
+   border-radius:24px;
+   background:linear-gradient(135deg,#21c7a8,#7c4dff);
+   color:#fff;
+   font-weight:600;
+   font-size:1rem;
+   border:none;
+   box-shadow:0 2px 8px rgba(33,199,168,0.13);
+   cursor:pointer;
+   transition:background 0.2s,transform 0.2s;
+}
+#config-save-btn :hover{
+   transform: scale(1.0);
 }

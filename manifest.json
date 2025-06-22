@@ -1,6 +1,6 @@
 {
-  "name": "Lịch Học Sinh Viên",
-  "short_name": "Lịch Học Sinh Viên",
+  "name": "Lịch Học Uni",
+  "short_name": "Lịch Học Uni",
   "start_url": "/lichhoc.html",
   "display": "standalone",
   "background_color": "#ffffff",

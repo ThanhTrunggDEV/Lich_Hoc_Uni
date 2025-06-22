@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nguyenthanhtrung.online/sitemap.xml
+Sitemap: https://lichuni.id.vn/sitemap.xml

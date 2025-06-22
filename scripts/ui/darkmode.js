@@ -1,4 +1,5 @@
-export function initDarkMode(changeModeButton) {
+export function initDarkMode() {
+  const changeModeButton = document.getElementById('change-mode-button');
   let isDarkMode = false;
   (function autoDarkModeByTime() {
     const now = new Date();
@@ -7,14 +8,9 @@ export function initDarkMode(changeModeButton) {
       document.body.classList.add('dark-mode');
       isDarkMode = true;
       changeModeButton.innerHTML = '<i class="fas fa-moon"></i>';
-      const newDiv = document.createElement('div');
-      newDiv.className = 'stars';
-      for (let i = 0; i < 30; i++) {
-        const tempDiv = document.createElement('div');
-        tempDiv.className = 'star';
-        newDiv.appendChild(tempDiv);
-      }
-      document.body.appendChild(newDiv);
+      let isSaoBang = localStorage.getItem('saobang');
+      if(isSaoBang && isSaoBang === 'on')
+         document.body.appendChild(addShootingStars());
     } else {
       changeModeButton.innerHTML = `
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" style="display:block" xmlns="http://www.w3.org/2000/svg">
@@ -39,14 +35,9 @@ export function initDarkMode(changeModeButton) {
     isDarkMode = !isDarkMode;
     if (isDarkMode) {
       changeModeButton.innerHTML = '<i class="fas fa-moon"></i>';
-      const newDiv = document.createElement('div');
-      newDiv.className = 'stars';
-      for (let i = 0; i < 30; i++) {
-        const tempDiv = document.createElement('div');
-        tempDiv.className = 'star';
-        newDiv.appendChild(tempDiv);
-      }
-      document.body.appendChild(newDiv);
+      
+      let isSaoBang = localStorage.getItem('saobang');
+      if(isSaoBang && isSaoBang === 'on') document.body.appendChild(addShootingStars());
     } else {
       changeModeButton.innerHTML = `
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" style="display:block" xmlns="http://www.w3.org/2000/svg">
@@ -66,4 +57,15 @@ export function initDarkMode(changeModeButton) {
       document.querySelectorAll('.stars').forEach(e => e.remove());
     }
   });
+}
+
+function addShootingStars(){
+  const newDiv = document.createElement('div');
+      newDiv.className = 'stars';
+  for (let i = 0; i < 30; i++) {
+        const tempDiv = document.createElement('div');
+        tempDiv.className = 'star';
+        newDiv.appendChild(tempDiv);
+      }
+      return newDiv;
 }

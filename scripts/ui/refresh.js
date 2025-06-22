@@ -1,7 +1,7 @@
 import { renderFullTimetable } from '../api/timetable.js';
 import { renderExamSchedule } from '../api/exam.js';
-
-export function setupRefresh(isShowingExamSchedule) {
+import { isShowingExamSchedule } from '../ui/tabs.js'
+export function setupRefresh() {
   const refreshButton = document.getElementById('refresh-button');
   if (refreshButton) {
     refreshButton.addEventListener('click', () => {
