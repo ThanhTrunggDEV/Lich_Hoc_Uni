@@ -45,6 +45,8 @@ COPY scripts/utils/transform.js /usr/share/nginx/html/scripts/utils/transform.js
 
 COPY robots.txt /usr/share/nginx/html/robots.txt
 
+COPY ads.txt /usr/share/nginx/html/ads.txt
+
 COPY resources/favicon.ico /usr/share/nginx/html/favicon.ico
 COPY sw.js                 /usr/share/nginx/html/sw.js
 COPY icons/                /usr/share/nginx/html/icons/
