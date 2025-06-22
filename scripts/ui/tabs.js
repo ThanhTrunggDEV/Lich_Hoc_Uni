@@ -1,7 +1,7 @@
 import { renderFullTimetable } from '../api/timetable.js';
 import { renderExamSchedule } from '../api/exam.js';
 
-let isShowingExamSchedule = false;
+export let isShowingExamSchedule = false;
 
 export function setupTabs() {
   const tabTimetable = document.getElementById('tab-timetable');

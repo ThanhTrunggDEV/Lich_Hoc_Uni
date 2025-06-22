@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDarkMode();
   setupTabs();
   setupLogout();
-  setupRefresh(false);
+  setupRefresh();
   sendHeartBeat();
   updateOnlineUsers();
   setInterval(updateOnlineUsers, 10000);
