@@ -1,15 +1,18 @@
-import { parsePeriodRange, periodTimes_ICTU, periodTimes_TUMP, periodTimes_TNUS } from './period.js';
+import { parsePeriodRange, periodTimes_ICTU, periodTimes_TUMP, periodTimes_TNUS, periodTimes_TUEBA } from './period.js';
 
 export function transformTimetableData(data) {
   const schedule = {};
   const dayMap = { '8': 'Chủ Nhật', '2': 'Thứ 2', '3': 'Thứ 3', '4': 'Thứ 4', '5': 'Thứ 5', '6': 'Thứ 6', '7': 'Thứ 7' };
   const studentID = localStorage.getItem('studentID');
   let periodTimes = periodTimes_ICTU;
-  if (studentID.startsWith('DTY')){
+  if (studentID.toUpperCase().startsWith('DTY')){
     periodTimes = periodTimes_TUMP;
   }
-  if(studentID.startsWith('DTZ')){
+  if(studentID.toUpperCase().startsWith('DTZ')){
     periodTimes = periodTimes_TNUS;
+  }
+  if(studentID.toUpperCase().startsWith('DTE')){
+    periodTimes = periodTimes_TUEBA;
   }
   
   Object.keys(data).forEach(week => {

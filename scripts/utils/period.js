@@ -48,6 +48,21 @@ export const periodTimes_TNUS = {
   12: { start: '17:40', end: '18:30' }
 }
 
+export const periodTimes_TUEBA = {
+  1: { start: '7:00', end: '7:50' },
+  2: { start: '7:55', end: '8:45' },
+  3: { start: '8:50', end: '9:40' },
+  4: { start: '9:45', end: '10:35' },
+  5: { start: '10:40', end: '11:30' },
+
+  6: { start: '13:00', end: '13:50' },
+  7: { start: '13:55', end: '14:45' },
+  8: { start: '14:50', end: '15:40' },
+  9: { start: '15:45', end: '16:35' },
+  10: { start: '16:40', end: '17:30' }
+}
+
+
 export function parsePeriodRange(periodStr) {
   if (periodStr.includes('-->')) {
     const [start, end] = periodStr.split('-->').map(p => parseInt(p.trim()));
