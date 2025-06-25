@@ -84,7 +84,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   const url = new URL(req.url);
-  if (url.pathname === '/online-users') {
+  if (url.pathname === '/online-users' || url.pathname  === '/random_quote') {
     event.respondWith(fetch(req));
     return;
   }
