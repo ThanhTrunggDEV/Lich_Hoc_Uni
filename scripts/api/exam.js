@@ -41,9 +41,12 @@ export async function renderExamSchedule() {
     examHeader.innerHTML = `<i class="fas fa-graduation-cap"></i> Lịch Thi`;
     scheduleContainer.appendChild(examHeader);
     const today = new Date();
+    today.setHours(0, 0, 0, 0); 
     sortedExams.forEach(exam => {
       const [day, month, year] = exam.ngay_thi.split('/');
-      if(new Date(`${year}-${month}-${day}`) < today) return;
+      const examDate = new Date(`${year}-${month}-${day}`);
+      examDate.setHours(0, 0, 0, 0); 
+      if (examDate < today) return;
       const examContainer = document.createElement('div');
       examContainer.className = 'exam-container';
       examContainer.appendChild(createExamCard(exam));
@@ -70,9 +73,12 @@ export async function renderExamSchedule() {
         examHeader.innerHTML = `<i class="fas fa-graduation-cap"></i> Lịch Thi (Offline)`;
         scheduleContainer.appendChild(examHeader);
         const today = new Date();
+        today.setHours(0, 0, 0, 0); 
         sortedExams.forEach(exam => {
           const [day, month, year] = exam.ngay_thi.split('/');
-          if(new Date(`${year}-${month}-${day}`) < today) return;
+          const examDate = new Date(`${year}-${month}-${day}`);
+          examDate.setHours(0, 0, 0, 0); 
+          if (examDate < today) return;
           const examContainer = document.createElement('div');
           examContainer.className = 'exam-container';
           examContainer.appendChild(createExamCard(exam));
@@ -115,9 +121,12 @@ export function renderExamScheduleFromCache(){
         examHeader.innerHTML = `<i class="fas fa-graduation-cap"></i> Lịch Thi (Offline)`;
         scheduleContainer.appendChild(examHeader);
         const today = new Date();
+        today.setHours(0, 0, 0, 0); // Đặt về đầu ngày để so sánh chính xác
         sortedExams.forEach(exam => {
           const [day, month, year] = exam.ngay_thi.split('/');
-          if(new Date(`${year}-${month}-${day}`) < today) return;
+          const examDate = new Date(`${year}-${month}-${day}`);
+          examDate.setHours(0, 0, 0, 0); // Đặt về đầu ngày
+          if (examDate < today) return;
           const examContainer = document.createElement('div');
           examContainer.className = 'exam-container';
           examContainer.appendChild(createExamCard(exam));

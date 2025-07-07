@@ -23,6 +23,7 @@ export async function renderFullTimetable() {
     if (!response.ok) throw new Error(`Status: ${response.status}, Message: ${await response.text()}`);
     const data = await response.json();
     localStorage.setItem('timetableData', JSON.stringify(data));
+    if(!data) return showError("Không có lịch học cho thời gian sắp tới");
     loadingElement.style.display = 'none';
 
     const currentAndFutureWeeks = {};
@@ -67,6 +68,7 @@ export function renderTimeTableFromCache(){
     if (cached) {
       try {
         const data = JSON.parse(cached);
+        if(!data) return showError("Không có lịch học cho thời gian sắp tới (offline)");
         const currentAndFutureWeeks = {};
         Object.keys(data).forEach(week => {
           if (!isWeekInPast(week)) currentAndFutureWeeks[week] = data[week];
