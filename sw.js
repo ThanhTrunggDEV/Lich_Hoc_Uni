@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lichhoc-v9';
+const CACHE_NAME = 'lichhoc-v10';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
