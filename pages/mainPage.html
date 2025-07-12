@@ -440,7 +440,11 @@ function isInStandaloneMode() {
 if (isIos() && !isInStandaloneMode()) {
     installBtn.style.display = 'inline-flex';
     installBtn.onclick = function() {
-        alert('Để thêm ứng dụng vào màn hình chính:\n1. Nhấn nút Chia sẻ (Share) trên Safari.\n2. Chọn "Thêm vào Màn hình chính" (Add to Home Screen).');
+        window.location.hash = '#ios-install-video';
+        const section = document.getElementById('ios-install-video');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 }
 </script>
