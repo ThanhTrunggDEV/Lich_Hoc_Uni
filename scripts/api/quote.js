@@ -1,8 +1,8 @@
 export function fetchAndShowQuote() {
   const quoteDiv = document.getElementById('quote');
   const defaultQuote = {
-    quote: 'Bạn không cần phải vĩ đại để bắt đầu, nhưng bạn phải bắt đầu để trở nên vĩ đại.',
-    author: 'Zig Ziglar'
+    quote: 'Tôi là bò sáng phải rống, bạn là người sống phải ráng.',
+    author: 'Ẩn danh'
   };
   fetch('https://api.nguyenthanhtrung.online/random_quote')
     .then(res => res.json())
