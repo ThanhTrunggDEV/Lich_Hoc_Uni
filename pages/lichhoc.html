@@ -178,7 +178,20 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 <script>
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
+  navigator.serviceWorker.register('/sw.js').then((reg) => {
+    reg.onupdatefound = () => {
+      const newWorker = reg.installing;
+      newWorker.onstatechange = () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          window.location.reload();
+        }
+      };
+    };
+  });
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload();
+  });
 }
 </script>
   <footer class="footer">
@@ -212,8 +225,7 @@ if ('serviceWorker' in navigator) {
     <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="donate-modal-title">
       <div class="modal-close" id="modal-close" title="Đóng"><i class="fas fa-times"></i></div>
       <h2 class="modal-title" id="donate-modal-title"><i class="fas fa-heart"></i> Cảm ơn bạn đã ủng hộ!</h2>
-      <img src="https://api.vietqr.io/image/970422-015062005-AZvwQuX.jpg?accountName=NGUYEN%20THANH%20TRUNG&amount=5000&addInfo=donate"
-           alt="Mã QR chuyển khoản ủng hộ Nguyễn Thành Trung" class="qr-image" id="qr-code" loading="lazy">
+      <img src="" alt="Mã QR chuyển khoản ủng hộ Nguyễn Thành Trung" class="qr-image" id="qr-code" loading="lazy">
       <p style="margin: 10px 0 0 0; color: #ff4081; font-weight: 500;">
         <i class="fas fa-qrcode"></i> Quét mã QR để chuyển khoản
       </p>
@@ -223,6 +235,5 @@ if ('serviceWorker' in navigator) {
       </div>
     </div>
   </div>
-
 </body>
 </html>

@@ -269,7 +269,7 @@
             <div class="video-container animate-on-scroll">
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:24px;box-shadow:0 40px 80px rgba(0,0,0,0.3);background:#1e293b;">
                     <iframe 
-                        src="https://www.youtube.com/embed/1u7T9Q6FqzA" 
+                        src="https://www.youtube.com/embed/BgiaTp4xKpU?si=BdwTFI1XSLIgQCK8" 
                         title="Hướng Dẫn Cài Đặt Ứng Dụng Trên IOS" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -306,7 +306,7 @@
                 <div class="university-card animate-on-scroll">
                     <div class="university-logo">TNUE</div>
                     <div class="university-name">Đại học Sư phạm Thái Nguyên</div>
-                    <div class="university-status">Đã hỗ trợ</div>
+                    <div class="university-status">Đang phát triển</div>
                 </div>
                 <div class="university-card animate-on-scroll">
                     <div class="university-logo">TNUT</div>
@@ -321,7 +321,7 @@
                 <div class="university-card animate-on-scroll">
                     <div class="university-logo">SFL</div>
                     <div class="university-name">Đại học Ngoại Ngữ</div>
-                    <div class="university-status">Đã hỗ trợ</div>
+                    <div class="university-status">Đang phát triển</div>
                 </div>
                 <div class="university-card animate-on-scroll">
                     <div class="university-logo">TNUS</div>
@@ -440,14 +440,31 @@ function isInStandaloneMode() {
 if (isIos() && !isInStandaloneMode()) {
     installBtn.style.display = 'inline-flex';
     installBtn.onclick = function() {
-        alert('Để thêm ứng dụng vào màn hình chính:\n1. Nhấn nút Chia sẻ (Share) trên Safari.\n2. Chọn "Thêm vào Màn hình chính" (Add to Home Screen).');
+        window.location.hash = '#ios-install-video';
+        const section = document.getElementById('ios-install-video');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 }
 </script>
 
 <script>
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
+  navigator.serviceWorker.register('/sw.js').then((reg) => {
+    reg.onupdatefound = () => {
+      const newWorker = reg.installing;
+      newWorker.onstatechange = () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          window.location.reload();
+        }
+      };
+    };
+  });
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload();
+  });
 }
 </script>
 </body>
