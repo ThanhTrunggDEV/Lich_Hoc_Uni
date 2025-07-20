@@ -13,7 +13,7 @@ import { setupLogout } from './ui/logout.js';
 import { setupRefresh } from './ui/refresh.js';
 import { initConfigButton } from './ui/config.js';
 import { initSaveConfigButton } from './ui/config.js';
-
+import { showToast } from './ui/showmessage.js';
 document.addEventListener('DOMContentLoaded', () => {
   if (!checkAuth()) return;
   showGreeting();
@@ -21,8 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initConfigButton();
   initSaveConfigButton();
   const autoLoad = localStorage.getItem('autolichhoc');
-  if(autoLoad && autoLoad == 'off')
+  if(autoLoad && autoLoad == 'off'){
     renderTimeTableFromCache();
+    showToast("Chế độ tự động đồng bộ lịch học đang tắt!!!");
+  }
   else
     renderFullTimetable();
   

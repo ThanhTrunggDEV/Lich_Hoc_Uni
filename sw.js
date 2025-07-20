@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lichhoc-v12';
+const CACHE_NAME = 'lichhoc-v13';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -30,6 +30,7 @@ const STATIC_ASSETS = [
   '/scripts/ui/logout.js',
   '/scripts/ui/refresh.js',
   '/scripts/ui/tabs.js',
+  '/scripts/ui/showmessage.js',
 
   '/scripts/utils/card.js',
   '/scripts/utils/date.js',

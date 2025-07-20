@@ -36,6 +36,7 @@ COPY scripts/ui/logout.js /usr/share/nginx/html/scripts/ui/logout.js
 COPY scripts/ui/refresh.js /usr/share/nginx/html/scripts/ui/refresh.js
 COPY scripts/ui/tabs.js /usr/share/nginx/html/scripts/ui/tabs.js
 COPY scripts/ui/config.js /usr/share/nginx/html/scripts/ui/config.js
+COPY scripts/ui/showmessage.js /usr/share/nginx/html/scripts/ui/showmessage.js
 
 COPY scripts/utils/card.js /usr/share/nginx/html/scripts/utils/card.js
 COPY scripts/utils/date.js /usr/share/nginx/html/scripts/utils/date.js
