@@ -412,15 +412,24 @@
     </footer>
 <script src="/scripts/mainPage.js"></script>
 <script>
-
-let deferredPrompt;
 const installBtn = document.getElementById('installAppBtn');
+let deferredPrompt = null;
+
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
     installBtn.style.display = 'inline-flex';
 });
+
 installBtn && installBtn.addEventListener('click', async () => {
+    if (isIos() && !isInStandaloneMode()) {
+        window.location.hash = '#ios-install-video';
+        const section = document.getElementById('ios-install-video');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+        return;
+    }
     if (deferredPrompt) {
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
@@ -430,22 +439,11 @@ installBtn && installBtn.addEventListener('click', async () => {
         deferredPrompt = null;
     }
 });
-
 function isIos() {
     return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
 }
 function isInStandaloneMode() {
     return ('standalone' in window.navigator) && window.navigator.standalone;
-}
-if (isIos() && !isInStandaloneMode()) {
-    installBtn.style.display = 'inline-flex';
-    installBtn.onclick = function() {
-        window.location.hash = '#ios-install-video';
-        const section = document.getElementById('ios-install-video');
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
 }
 </script>
 
