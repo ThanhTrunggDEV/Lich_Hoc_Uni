@@ -14,12 +14,19 @@ import { setupRefresh } from './ui/refresh.js';
 import { initConfigButton } from './ui/config.js';
 import { initSaveConfigButton } from './ui/config.js';
 import { showToast } from './ui/showmessage.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   if (!checkAuth()) return;
   showGreeting();
   fetchAndShowQuote();
   initConfigButton();
   initSaveConfigButton();
+  initDonateModal();
+  initDarkMode();
+  setupTabs();
+  setupLogout();
+  setupRefresh();
+
   const autoLoad = localStorage.getItem('autolichhoc');
   if(autoLoad && autoLoad == 'off'){
     renderTimeTableFromCache();
@@ -27,12 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   else
     renderFullTimetable();
-  
-  initDonateModal();
-  initDarkMode();
-  setupTabs();
-  setupLogout();
-  setupRefresh();
+
   sendHeartBeat();
   updateOnlineUsers();
   setInterval(updateOnlineUsers, 10000);
