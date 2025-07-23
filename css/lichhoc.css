@@ -530,18 +530,22 @@
       letter-spacing: 0.5px;
     }
     .qr-image {
-      width: 200px;
-      height: 250px;
-      object-fit: cover;
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      aspect-ratio: 4/5;
+      object-fit: contain;
       border-radius: 18px;
       margin-bottom: 12px;
       border: 2.5px solid #ff80ab;
       background: #fafafa;
       box-shadow: 0 2px 12px rgba(255,64,129,0.10);
       transition: transform 0.2s;
-      display: flex;
+      display: block;
       margin-left: auto;
       margin-right: auto;
+      max-width: 90vw; /* Thêm dòng này để không vượt quá màn hình nhỏ */
+      max-height: 60vw; /* Thêm dòng này để giới hạn chiều cao trên mobile */
     }
     .qr-image:hover {
       transform: scale(2);
@@ -560,8 +564,10 @@
         margin: 0 auto;
       }
       .qr-image {
-        width: 140px;
-        height: 140px;
+        width: 100%;
+        max-width: 140px;
+        height: auto;
+        aspect-ratio: 4/5;
       }
     }
 
